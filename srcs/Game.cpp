@@ -22,6 +22,25 @@ Game::~Game() {
   // TODO: DELETE THINGS
 }
 
+Enemy * Game::_enemySpawner() {
+  
+  Enemy * enemy;
+
+  switch (rand() % 4)
+  {
+    case 0:
+      enemy = new Hurler();
+      break;
+    case 1:
+      enemy = new Slicer();
+      break;
+    default:
+      enemy = new Enemy();
+      break;
+  }
+  return enemy;
+}
+
 void Game::_handleShip(int input) {
 
   if (input == 32) { // MACRO FOR SPACE?
@@ -30,10 +49,6 @@ void Game::_handleShip(int input) {
     for (int i = 0; i < MAX_MISSILES; i++) {
       if (this->_missiles[i] == NULL) {
         this->_missiles[i] = shot;
-        // std::ofstream ofs;
-        // ofs.open(".log", std::ofstream::out | std::ofstream::app);
-        // ofs << "Assign missile" << std::endl;
-        // ofs.close();
         return;
       }
     }
@@ -71,17 +86,7 @@ void Game::_handleBackground() {
     }
 }
 
-char *Game::update(int input) {
-
-  this->_turn++;
-
-  /* Do some modification on the arena here */
-  std::memset(this->_arena, ' ',
-              ARENA_WIDTH *
-                  ARENA_HEIGHT); // Clearing last frame info completely
-
-  this->_handleBackground();
-  this->_handleShip(input);
+void Game::_handleMissiles() {
 
   for (int i = 0; i < MAX_MISSILES;
        i++) // move missiles last. if they hit an enemy,destroy it
@@ -96,7 +101,9 @@ char *Game::update(int input) {
       this->_arena[this->_missiles[i]->getCoordinate()] =
           this->_missiles[i]->getType();
     }
+}
 
+void Game::_handleEnemies() {
   for (int i = 0; i < MAX_ENEMIES;
        i++) // move ennemies: if they hit the player they destroy it. If they
             // hit a background, push them and check again?
@@ -105,7 +112,7 @@ char *Game::update(int input) {
       if (this->_enemies[i]->getCoordinate() >
           (ARENA_HEIGHT * ARENA_WIDTH) - 1) {
         delete this->_enemies[i];
-        this->_enemies[i] = new Enemy();
+        this->_enemies[i] = this->_enemySpawner();
       }
       if (this->_arena[this->_enemies[i]->getCoordinate()] ==
           this->_ship->getType())
@@ -131,12 +138,22 @@ char *Game::update(int input) {
             this->_enemies[i]->getType();
       }
     }
+}
 
-  // std::ofstream ofs;
-  // ofs.open(".log", std::ofstream::out | std::ofstream::app);
-  // ofs << input << std::endl;
-  // ofs.close();
+char *Game::update(int input) {
 
+  this->_turn++;
+
+  /* Do some modification on the arena here */
+  std::memset(this->_arena, ' ',
+              ARENA_WIDTH *
+                  ARENA_HEIGHT); // Clearing last frame info completely
+
+  this->_handleBackground();
+  this->_handleShip(input);
+  this->_handleMissiles();
+  this->_handleEnemies();
+  
   return this->_arena;
 }
 

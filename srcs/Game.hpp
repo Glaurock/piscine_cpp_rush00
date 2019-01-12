@@ -30,6 +30,9 @@ private:
 
   void _handleShip(int);
   void _handleBackground();
+  void _handleMissiles();
+  void _handleEnemies();
+  Enemy * _enemySpawner();
 
   Game(Game const &src);
   Game &operator=(Game const &src);
