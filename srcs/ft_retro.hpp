@@ -6,7 +6,7 @@
 
 #define MAX_ENEMIES 10
 #define MAX_MISSILES 4
-#define MAX_BACKGROUNDS 30
+#define MAX_BACKGROUNDS 400
 
 #include <iostream>
 

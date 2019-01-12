@@ -6,7 +6,7 @@
 #    By: gmonnier <gmonnier@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/10 15:44:42 by gmonnier          #+#    #+#              #
-#    Updated: 2019/01/12 14:12:01 by gmonnier         ###   ########.fr        #
+#    Updated: 2019/01/12 16:28:02 by gmonnier         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,7 @@ SRC = \
 		srcs/Display.cpp \
 		srcs/Game.cpp \
 		srcs/AGameEntity.cpp \
+		srcs/Background.cpp
 
 OBJ = $(SRC:%.cpp=%.o)
 

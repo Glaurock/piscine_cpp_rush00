@@ -23,8 +23,6 @@ Game::~Game() {
 
 void Game::_handleShip(int input) {
 
-  /* ------------------ Ship handling -------------------------- */ 
-  
   if (input == 32) { // MACRO FOR SPACE?
     Missile * shot;
     shot = this->_ship->fireMissile();
@@ -44,9 +42,28 @@ void Game::_handleShip(int input) {
   this->_ship->move(input);
   this->_arena[this->_ship->getCoordinate()] =
     this->_ship->getType();
+}
 
-  /* ----------------------------------------------------------- */ 
+void Game::_handleBackground() {
+  /* background spawner : un a droite un a gauche */
+  Background * left = new Background(2, 0, 1, '*');
+  Background * right = new Background(ARENA_WIDTH - 2, 0, 1, '*');
+  int i = Background::getNextFreeSpace(this->_backgrounds);
+  this->_backgrounds[i] = left;
+  i = Background::getNextFreeSpace(this->_backgrounds);
+  this->_backgrounds[i] = right;
 
+  for (int i = 0; i < MAX_BACKGROUNDS; i++) // Move backgrounds first
+      if (this->_backgrounds[i] != NULL) {
+        this->_backgrounds[i]->move();
+        if (this->_backgrounds[i]->getXCoordinate() == -1 && this->_backgrounds[i]->getYCoordinate() == -1) {
+          delete this->_backgrounds[i];
+          this->_backgrounds[i] = NULL;
+          continue ;
+        }
+        this->_arena[this->_backgrounds[i]->getCoordinate()] =
+            this->_backgrounds[i]->getType();
+      }
 }
 
 char *Game::update(int input) {
@@ -56,14 +73,10 @@ char *Game::update(int input) {
               ARENA_WIDTH *
                   ARENA_HEIGHT); // Clearing last frame info completely
 
+  this->_handleBackground();
   this->_handleShip(input);
 
-  for (int i = 0; i < MAX_BACKGROUNDS; i++) // Move backgrounds first
-    if (this->_backgrounds[i] != NULL) {
-      this->_backgrounds[i]->move();
-      this->_arena[this->_backgrounds[i]->getCoordinate()] =
-          this->_backgrounds[i]->getType();
-    }
+  
 
   for (int i = 0; i < MAX_ENEMIES;
        i++) // move ennemies: if they hit the player they destroy it. If they

@@ -8,6 +8,9 @@
 #include "Missile.hpp"
 #include "Background.hpp"
 
+//random
+#include <stdlib.h>
+
 // remove this later
 #include <fstream>
 #include <string>
@@ -23,6 +26,7 @@ class Game
     Background *_backgrounds[MAX_BACKGROUNDS];
 
     void _handleShip(int);
+    void _handleBackground();
 
     Game(Game const &src);
     Game &operator=(Game const &src);
