@@ -1,6 +1,6 @@
 #include "Game.hpp"
 
-Game::Game(): _turn(0) {
+Game::Game() : _turn(0) {
   std::memset(this->_arena, ' ', ARENA_WIDTH * ARENA_HEIGHT);
   this->_ship = new Ship();
 
@@ -13,6 +13,7 @@ Game::Game(): _turn(0) {
   for (int i = 0; i < MAX_MISSILES; i++)
     (this->_missiles[i] = NULL);
   this->_enemies[0] = new Hurler();
+  //   this->_enemies[1] = new Hurler();
 }
 
 Game::Game(Game const &src) {}
@@ -40,12 +41,11 @@ void Game::_handleShip(int input) {
     delete shot;
   }
   this->_ship->move(input);
-  this->_arena[this->_ship->getCoordinate()] =
-    this->_ship->getType();
+  this->_arena[this->_ship->getCoordinate()] = this->_ship->getType();
 }
 
 void Game::_addNewBackGroundElem(int x, int y) {
-  Background * elem = new Background(x, y, 1, '*');
+  Background *elem = new Background(x, y, 1, '*');
   int i = Background::getNextFreeSpace(this->_backgrounds);
   this->_backgrounds[i] = elem;
 }
@@ -67,16 +67,17 @@ void Game::_handleBackground() {
   }
 
   for (int i = 0; i < MAX_BACKGROUNDS; i++) // Move backgrounds first
-      if (this->_backgrounds[i] != NULL) {
-        this->_backgrounds[i]->move();
-        if (this->_backgrounds[i]->getXCoordinate() == -1 && this->_backgrounds[i]->getYCoordinate() == -1) {
-          delete this->_backgrounds[i];
-          this->_backgrounds[i] = NULL;
-          continue ;
-        }
-        this->_arena[this->_backgrounds[i]->getCoordinate()] =
-            this->_backgrounds[i]->getType();
+    if (this->_backgrounds[i] != NULL) {
+      this->_backgrounds[i]->move();
+      if (this->_backgrounds[i]->getXCoordinate() == -1 &&
+          this->_backgrounds[i]->getYCoordinate() == -1) {
+        delete this->_backgrounds[i];
+        this->_backgrounds[i] = NULL;
+        continue;
       }
+      this->_arena[this->_backgrounds[i]->getCoordinate()] =
+          this->_backgrounds[i]->getType();
+    }
 }
 
 char *Game::update(int input) {
@@ -90,7 +91,7 @@ char *Game::update(int input) {
 
   this->_handleBackground();
   this->_handleShip(input);
-  
+
   for (int i = 0; i < MAX_MISSILES;
        i++) // move missiles last. if they hit an enemy,destroy it
     if (this->_missiles[i] != NULL) {
@@ -143,7 +144,6 @@ char *Game::update(int input) {
   // ofs.open(".log", std::ofstream::out | std::ofstream::app);
   // ofs << input << std::endl;
   // ofs.close();
-
 
   return this->_arena;
 }
