@@ -5,9 +5,8 @@
 #include "Enemy.hpp"
 #include "Hurler.hpp"
 #include "Missile.hpp"
-#include "Background.hpp"
-#include "Hurler.hpp"
 #include "Ship.hpp"
+#include "Slicer.hpp"
 
 #include <cstring>
 
@@ -15,8 +14,7 @@
 #include <fstream>
 #include <string>
 
-class Game
-{
+class Game {
 
 private:
   char _arena[ARENA_WIDTH * ARENA_HEIGHT];
