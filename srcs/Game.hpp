@@ -7,6 +7,9 @@
 #include "Missile.hpp"
 #include "Background.hpp"
 #include "Hurler.hpp"
+#include "Ship.hpp"
+
+#include <cstring>
 
 // remove this later
 #include <fstream>
