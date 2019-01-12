@@ -9,9 +9,9 @@ Missile::~Missile() {}
 
 Missile &Missile::operator=(Missile const &src) {}
 
-void Missile::move(void)
+void Missile::move(int turn)
 {
-    this->_y -= this->_velocity;
+    this->_y--;
     if (this->_y <= 1)
     {
         this->_y = -1;

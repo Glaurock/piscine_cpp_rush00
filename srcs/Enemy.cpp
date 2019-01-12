@@ -23,7 +23,7 @@ Enemy::~Enemy()
 
 Enemy &Enemy::operator=(Enemy const &src) {}
 
-void Enemy::move(void)
+void Enemy::move(int turn)
 {
   int velocity = this->getVelocity();
   // std::cout << "I MOVED BUT NOT GOOD" << std::endl;

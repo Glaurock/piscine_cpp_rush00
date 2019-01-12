@@ -19,7 +19,7 @@ public:
 
   AGameEntity &operator=(AGameEntity const &rhs);
 
-  virtual void move(void) = 0;
+  virtual void move(int) = 0;
   int getCoordinate(void) const;
   int getYCoordinate(void) const;
   int getXCoordinate(void) const;

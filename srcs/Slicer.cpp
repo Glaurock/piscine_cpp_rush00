@@ -7,7 +7,7 @@ Slicer::Slicer(Slicer const &src) {}
 
 Slicer::~Slicer() {}
 
-void Slicer::move(void) {
+void Slicer::move(int turn) {
   int velocity = this->getVelocity();
 
   if ((this->_x + velocity) > ARENA_WIDTH ||

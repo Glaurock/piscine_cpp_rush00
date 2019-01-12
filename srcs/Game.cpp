@@ -1,6 +1,6 @@
 #include "Game.hpp"
 
-Game::Game() : _turn(0) {
+Game::Game() : _turn(0), _score(0) {
   std::memset(this->_arena, ' ', ARENA_WIDTH * ARENA_HEIGHT);
   this->_ship = new Ship();
 
@@ -57,7 +57,7 @@ void Game::_handleBackground() {
 
   for (int i = 0; i < MAX_BACKGROUNDS; i++) // Move backgrounds first
     if (this->_backgrounds[i] != NULL) {
-      this->_backgrounds[i]->move();
+      this->_backgrounds[i]->move(this->_turn);
       if (this->_backgrounds[i]->getXCoordinate() == -1 &&
           this->_backgrounds[i]->getYCoordinate() == -1) {
         delete this->_backgrounds[i];
@@ -84,7 +84,7 @@ char *Game::update(int input) {
   for (int i = 0; i < MAX_MISSILES;
        i++) // move missiles last. if they hit an enemy,destroy it
     if (this->_missiles[i] != NULL) {
-      this->_missiles[i]->move();
+      this->_missiles[i]->move(this->_turn);
       if (this->_missiles[i]->getXCoordinate() == -1 &&
           this->_missiles[i]->getYCoordinate() == -1) {
         delete this->_missiles[i];
@@ -99,7 +99,7 @@ char *Game::update(int input) {
        i++) // move ennemies: if they hit the player they destroy it. If they
             // hit a background, push them and check again?
     if (this->_enemies[i] != NULL) {
-      this->_enemies[i]->move();
+      this->_enemies[i]->move(this->_turn);
       if (this->_enemies[i]->getCoordinate() >
           (ARENA_HEIGHT * ARENA_WIDTH) - 1) {
         delete this->_enemies[i];

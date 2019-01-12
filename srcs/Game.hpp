@@ -26,6 +26,7 @@ private:
   Enemy *_enemies[MAX_ENEMIES];
   Background *_backgrounds[MAX_BACKGROUNDS];
   unsigned int _turn;
+  unsigned int _score;
 
   void _handleShip(int);
   void _handleBackground();

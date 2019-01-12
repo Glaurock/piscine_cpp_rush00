@@ -13,7 +13,6 @@ Ship::Ship()
 
 Ship::~Ship() {}
 
-void Ship::move() {}
 
 void Ship::move(int input)
 {

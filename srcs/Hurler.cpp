@@ -9,7 +9,7 @@ Hurler::Hurler(Hurler const &src) {}
 
 Hurler::~Hurler() {}
 
-void Hurler::move(void)
+void Hurler::move(int turn)
 {
     int velocity = this->getVelocity();
 

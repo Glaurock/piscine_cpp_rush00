@@ -5,7 +5,7 @@ Background::Background(int x, int y, int velocity, char type):
 
 Background::~Background() {}
 
-void Background::move() { 
+void Background::move(int turn) { 
     this->_y += this->_velocity; 
     if (this->_y >= ARENA_HEIGHT) {
         this->_y = -1;

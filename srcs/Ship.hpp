@@ -20,7 +20,6 @@ public:
   Ship();
   virtual ~Ship();
 
-  void move();
   void move(int dir);
   Missile *fireMissile(void);
   void collided(void);
