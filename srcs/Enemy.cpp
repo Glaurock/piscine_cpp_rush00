@@ -11,6 +11,7 @@ Enemy::Enemy(int x, int y, int velocity, char type)
   //       1 + std::rand() / ((RAND_MAX + 1u) / 5); // needs the ctime/iostream
   this->_type = list_type[random - 2];
   this->_velocity = (random % 2) + 1;
+  this->_hp = 1;
 }
 
 Enemy::Enemy(Enemy const &src) {}
@@ -43,7 +44,7 @@ void Enemy::move(char *arena) // safest method for BG check
   int prevY = this->getYCoordinate();
   int velocity = this->getVelocity();
 
-  if ((prevX + velocity) > ARENA_WIDTH ||
+  if ((prevX + velocity) > ARENA_WIDTH - 2 ||
       (prevX + velocity) < 0) // a border of the window would be reached
   {
     if (velocity > 0)
@@ -62,4 +63,11 @@ void Enemy::move(char *arena) // safest method for BG check
     this->_velocity *= -1;
     return; // stay where you are
   }
+}
+
+bool Enemy::collided(void) {
+  this->_hp -= 1;
+  if (this->_hp == 0)
+    return true; // destroys enemy
+  return false;
 }

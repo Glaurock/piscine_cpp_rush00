@@ -9,10 +9,14 @@ Missile::~Missile() {}
 
 Missile &Missile::operator=(Missile const &src) {}
 
-void Missile::move(void) { 
-    this->_y -= this->_velocity; 
-    if (this->_y <= 1) {
+void Missile::move(void)
+{
+    this->_y -= this->_velocity;
+    if (this->_y <= 1)
+    {
         this->_y = -1;
         this->_x = -1;
     }
 }
+
+char const Missile::_type = '|';
