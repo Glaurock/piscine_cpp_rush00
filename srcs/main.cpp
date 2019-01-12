@@ -1,16 +1,19 @@
 #include "Display.hpp"
 #include "Game.hpp"
 
+#include <unistd.h> /*sleep*/
+
 int main() {
     Display display;
     Game game;
     char *arena;
-    int dir;
+    int input;
 
     while(1) {
-        dir = display.getInput();
-        arena = game.update(dir);
+        input = display.getInput();
+        arena = game.update(input);
         display.draw(arena);
+        usleep(100000);
     }
 
     return (0);

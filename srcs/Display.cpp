@@ -7,6 +7,7 @@ Display::Display() {
     start_color();
     this->_win = newwin(ARENA_HEIGHT, ARENA_WIDTH, 0, 0);
     keypad(this->_win, TRUE);
+    nodelay(this->_win, true);
 }
 
 Display::Display(Display const & src) {}
