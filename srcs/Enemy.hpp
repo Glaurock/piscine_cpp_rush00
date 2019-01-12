@@ -12,7 +12,7 @@ public:
   Enemy();
   Enemy(int x = 0, int y = 0, int velocity = 1, char type = 'H');
   virtual ~Enemy();
-  bool move(char *arena); // can be overidden for more subtle patterns
+  void move(void); // can be overidden for more subtle patterns
 };
 
 #endif // ENEMY_HPP

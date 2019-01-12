@@ -9,11 +9,12 @@ class Missile : public AGameEntity
   private:
     Missile(Missile const &src);
     Missile &operator=(Missile const &src);
+    Missile();
 
   public:
-    Missile();
+    Missile(int x, int y, int velocity = 3, char type = '|'); // x/y refer to ship
     virtual ~Missile();
-    bool move(char *arena); // can be overidden for more subtle patterns
+    void move(void); // can be overidden for more subtle patterns
 };
 
 #endif // MISSILE_HPP
