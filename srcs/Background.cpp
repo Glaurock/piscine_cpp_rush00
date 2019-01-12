@@ -14,12 +14,12 @@ void Background::move() {
 }
 
 void Background::popMountain(Game * game) {
-    int size = rand() % 6 + 1;
+    int size = rand() % 6 + 2;
 
     for (int i = 1; i < size; i++) {
         game->addNewBackGroundElem(i, 0);
     }
-    size = rand() % 6 + 1;
+    size = rand() % 6 + 2;
     for (int i = 1; i < size; i++) {
         game->addNewBackGroundElem(ARENA_WIDTH - i - 1, 0);
     }   

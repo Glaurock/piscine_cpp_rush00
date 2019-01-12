@@ -5,9 +5,8 @@
 #include "Enemy.hpp"
 #include "Hurler.hpp"
 #include "Missile.hpp"
-#include "Background.hpp"
-#include "Hurler.hpp"
 #include "Ship.hpp"
+#include "Slicer.hpp"
 
 #include <cstring>
 

@@ -1,8 +1,9 @@
 #include "Enemy.hpp"
 
 Enemy::Enemy(int x, int y, int velocity, char type, int hp)
-    : AGameEntity(x, y, velocity, type), _hp(hp) {
-  std::cout << this->_type << std::endl;
+    : AGameEntity(x, y, velocity, type), _hp(hp)
+{
+  // std::cout << this->_type << std::endl;
   // int random;
   // static char list_type[5] = {'H', 'A', 'M', 'U', 'T'};
 
@@ -16,12 +17,14 @@ Enemy::Enemy(int x, int y, int velocity, char type, int hp)
 
 Enemy::Enemy(Enemy const &src) {}
 
-Enemy::~Enemy() {
+Enemy::~Enemy()
+{
 } // we could display a '*' for one frame where an enemy was killed
 
 Enemy &Enemy::operator=(Enemy const &src) {}
 
-void Enemy::move(void) {
+void Enemy::move(void)
+{
   int velocity = this->getVelocity();
   // std::cout << "I MOVED BUT NOT GOOD" << std::endl;
   if ((this->_x + velocity) > ARENA_WIDTH ||
@@ -32,7 +35,8 @@ void Enemy::move(void) {
     else
       this->_y -= velocity; // basic enemies only go in one general direction
     this->_velocity *= -1;  // edge was reached, reverse direction
-  } else
+  }
+  else
     this->_x += velocity;
   //   if (this->_y > ARENA_HEIGHT)
   //     delete this;
@@ -53,7 +57,8 @@ void Enemy::move(char *arena) // safest method for BG check
     else
       this->_y -= velocity; // basic enemies only go in one general direction
     this->_velocity *= -1;  // edge was reached, reverse direction
-  } else
+  }
+  else
     this->_x += velocity;
   if (arena[this->_x * this->_y] !=
       ' ') // next case is, at the frame, not empty -> avoid crashing in
@@ -66,7 +71,8 @@ void Enemy::move(char *arena) // safest method for BG check
   }
 }
 
-bool Enemy::collided(void) {
+bool Enemy::collided(void)
+{
   this->_hp -= 1;
   if (this->_hp == 0)
     return true; // destroys enemy

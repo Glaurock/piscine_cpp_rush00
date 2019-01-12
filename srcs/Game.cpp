@@ -52,13 +52,8 @@ void Game::addNewBackGroundElem(int x, int y) {
 
 void Game::_handleBackground() {
   /* background spawner : un a droite un a gauche */
-  this->addNewBackGroundElem(1, 0);
-  this->addNewBackGroundElem(ARENA_WIDTH - 2, 0);
   /* every 10 turn, spawn a bar */
-  // if (this->_turn % 10 == 0) {
-    /* Found a smart way to handle this*/
   Background::popMountain(this);
-  // }
 
   for (int i = 0; i < MAX_BACKGROUNDS; i++) // Move backgrounds first
     if (this->_backgrounds[i] != NULL) {
