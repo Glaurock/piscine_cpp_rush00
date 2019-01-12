@@ -23,8 +23,9 @@ public:
     int getSize() const;
 
     void draw(Game * game);
-    static int boss1[6];  
     virtual void move(int);    
+
+    static int boss1[6];  
 };
 
 # endif // BOSS_HPP

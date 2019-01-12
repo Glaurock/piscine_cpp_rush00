@@ -28,14 +28,17 @@ Enemy * Game::_enemySpawner() {
 
   switch (rand() % 4)
   {
-    // case 0:
-    //   enemy = new Hurler();
-    //   break;
-    // case 1:
-    //   enemy = new Slicer();
-    //   break;
-    default:
+    case 0:
+      enemy = new Hurler();
+      break;
+    case 1:
+      enemy = new Slicer();
+      break;
+    case 2:
       enemy = new Boss();
+      break;
+    default:
+      enemy = new Enemy();
       break;
   }
   return enemy;
