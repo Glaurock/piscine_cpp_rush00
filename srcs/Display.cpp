@@ -19,6 +19,7 @@ void Display::draw(char *arena) {
     wrefresh(this->_win);
     mvwprintw(this->_win, 0, 0, arena);
     wborder(this->_win, '|', '|', '-', '-', '+', '+', '+', '+');
+    wrefresh(this->_win);
 }
 
 

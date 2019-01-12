@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: csimon <csimon@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gmonnier <gmonnier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/12 10:25:04 by csimon            #+#    #+#             */
-/*   Updated: 2019/01/12 11:29:57 by csimon           ###   ########.fr       */
+/*   Updated: 2019/01/12 11:56:30 by gmonnier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ void cast_curses(void)
     while (1)
     {
         curs_set(0);
-
         wrefresh(newWin);
         // redrawwin(newWin);
         // wrefresh(newWin2);

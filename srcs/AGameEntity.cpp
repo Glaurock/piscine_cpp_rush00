@@ -4,18 +4,21 @@
 AGameEntity::AGameEntity(void) {}
 
 AGameEntity::AGameEntity(int x, int y, int velocity, char type)
-    : _x(x), _y(y), _velocity(velocity), _type(type) {
+    : _x(x), _y(y), _velocity(velocity), _type(type)
+{
   return;
 }
 
-AGameEntity::AGameEntity(AGameEntity const &src) {
+AGameEntity::AGameEntity(AGameEntity const &src)
+{
   *this = src;
   return;
 }
 
 AGameEntity::~AGameEntity(void) {}
 
-AGameEntity &AGameEntity::operator=(AGameEntity const &rhs) {
+AGameEntity &AGameEntity::operator=(AGameEntity const &rhs)
+{
   this->_x = rhs.getXCoordinate();
   this->_y = rhs.getYCoordinate();
   this->_velocity = rhs.getVelocity();
@@ -24,7 +27,7 @@ AGameEntity &AGameEntity::operator=(AGameEntity const &rhs) {
   return *this;
 }
 
-int AGameEntity::getCoordinate(void) const { return (this->_y * this->_x); }
+int AGameEntity::getCoordinate(void) const { return ((this->_y * ARENA_WIDTH) + this->_x); }
 
 int AGameEntity::getYCoordinate(void) const { return this->_y; }
 

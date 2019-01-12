@@ -11,9 +11,13 @@ Ship::Ship() {
 
 Ship::~Ship() {}
 
-bool Ship::move(char *arena) {
-
+void Ship::move()
+{
 }
 
-
+Missile *Ship::fireMissile(void)
+{
+    Missile *shot = new Missile(this->_x, this->_y + 1);
+    return shot;
+}
 // Ship & Ship::operator=(Ship const & src) {}

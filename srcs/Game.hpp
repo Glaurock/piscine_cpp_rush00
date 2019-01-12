@@ -8,13 +8,17 @@
 # include "Missile.hpp"
 # include "Background.hpp"
 
+// remove this later
+# include <fstream>
+# include <string>
+
 class Game {
 
 private:
     char _arena[ARENA_WIDTH * ARENA_HEIGHT];
     Ship * _ship;
     Missile * _missiles[MAX_MISSILES];
-    Enemy * _enemies[MAX_ENEMIES];
+    // Enemy * _enemies[MAX_ENEMIES];
     Background * _backgrounds[MAX_BACKGROUNDS];
 
     Game(Game const & src);

@@ -1,8 +1,9 @@
 #ifndef SHIP_HPP
-# define SHIP_HPP
+#define SHIP_HPP
 
-# include "AGameEntity.hpp"
-# include "ft_retro.hpp"
+#include "AGameEntity.hpp"
+#include "Missile.hpp"
+#include "ft_retro.hpp"
 
 class Ship : public AGameEntity {
 
@@ -14,7 +15,8 @@ public:
     Ship();
     virtual ~Ship();
 
-    bool move(char *arena);
+    void move();
+    Missile *fireMissile(void);
 };
 
-# endif // SHIP_HPP
+#endif // SHIP_HPP
