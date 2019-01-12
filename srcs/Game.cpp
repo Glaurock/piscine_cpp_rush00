@@ -21,15 +21,42 @@ Game::~Game() {
   // TODO: DELETE THINGS
 }
 
+void Game::_handleShip(int input) {
+
+  /* ------------------ Ship handling -------------------------- */ 
+  
+  if (input == 32) { // MACRO FOR SPACE?
+    Missile * shot;
+    shot = this->_ship->fireMissile();
+    for (int i = 0; i < MAX_MISSILES; i++) {
+        if (this->_missiles[i] == NULL) {
+            this->_missiles[i] = shot;
+              // std::ofstream ofs;
+              // ofs.open(".log", std::ofstream::out | std::ofstream::app);
+              // ofs << "Assign missile" << std::endl;
+              // ofs.close();
+            return ;
+        }
+    }
+    /* If we are here, we cannot fire more missiles */
+    delete shot;
+  }
+  this->_ship->move(input);
+  this->_arena[this->_ship->getCoordinate()] =
+    this->_ship->getType();
+
+  /* ----------------------------------------------------------- */ 
+
+}
+
 char *Game::update(int input) {
 
   /* Do some modification on the arena here */
   std::memset(this->_arena, ' ',
               ARENA_WIDTH *
                   ARENA_HEIGHT); // Clearing last frame info completely
-  this->_ship->move(input);
-  this->_arena[this->_ship->getCoordinate()] =
-      this->_ship->getType(); // move player
+
+  this->_handleShip(input);
 
   for (int i = 0; i < MAX_BACKGROUNDS; i++) // Move backgrounds first
     if (this->_backgrounds[i] != NULL) {
@@ -56,14 +83,19 @@ char *Game::update(int input) {
        i++) // move missiles last. if they hit an enemy,destroy it
     if (this->_missiles[i] != NULL) {
       this->_missiles[i]->move();
+      if (this->_missiles[i]->getXCoordinate() == -1 && this->_missiles[i]->getYCoordinate() == -1) {
+        delete this->_missiles[i];
+        this->_missiles[i] = NULL;
+        continue ;
+      }
       this->_arena[this->_missiles[i]->getCoordinate()] =
           this->_missiles[i]->getType();
     }
 
-  std::ofstream ofs;
-  ofs.open(".log", std::ofstream::out | std::ofstream::app);
-  ofs << input << std::endl;
-  ofs.close();
+  // std::ofstream ofs;
+  // ofs.open(".log", std::ofstream::out | std::ofstream::app);
+  // ofs << input << std::endl;
+  // ofs.close();
 
   return this->_arena;
 }

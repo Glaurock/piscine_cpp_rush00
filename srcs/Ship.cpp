@@ -33,6 +33,7 @@ void Ship::move(int input)
             this->_x++;
             break ;
     }
+    /* Handle screen size limits */
     if (this->_x <= 1)
         this->_x = 2;
     if (this->_x >= ARENA_WIDTH - 1)
@@ -43,9 +44,9 @@ void Ship::move(int input)
         this->_y = ARENA_HEIGHT - 2;
 }
 
-Missile *Ship::fireMissile(void)
+Missile * Ship::fireMissile(void)
 {
-    Missile *shot = new Missile(this->_x, this->_y + 1);
-    return shot;
+    return new Missile(this->_x, this->_y + 1);
 }
+
 // Ship & Ship::operator=(Ship const & src) {}

@@ -6,6 +6,8 @@
 #include "Missile.hpp"
 #include "ft_retro.hpp"
 
+#include <fstream>
+
 class Ship : public AGameEntity {
 
 private:
@@ -18,7 +20,7 @@ public:
 
     void move();
     void move(int dir);
-    Missile *fireMissile(void);
+    Missile * fireMissile(void);
 };
 
 #endif // SHIP_HPP
