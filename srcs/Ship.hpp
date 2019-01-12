@@ -7,12 +7,11 @@
 class Ship : public AGameEntity {
 
 private:
-    Ship();
     Ship(Ship const & src);
     Ship & operator=(Ship const & src);
 
 public:
-    Ship(char *arena);    
+    Ship();
     virtual ~Ship();
 
     bool move(char *arena);
