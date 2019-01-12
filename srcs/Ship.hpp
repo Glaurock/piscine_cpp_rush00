@@ -1,6 +1,7 @@
 #ifndef SHIP_HPP
 #define SHIP_HPP
 
+#include <ncurses.h>
 #include "AGameEntity.hpp"
 #include "Missile.hpp"
 #include "ft_retro.hpp"
@@ -16,6 +17,7 @@ public:
     virtual ~Ship();
 
     void move();
+    void move(int dir);
     Missile *fireMissile(void);
 };
 

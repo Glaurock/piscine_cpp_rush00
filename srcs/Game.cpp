@@ -11,14 +11,14 @@ Game::~Game() {
     // TODO: DELETE THINGS
 }
 
-char * Game::update() {
+char * Game::update(int dir) {
     /* Do some modification on the arena here */
 
     this->_arena[this->_ship->getCoordinate()] = this->_ship->getType();
-    // std::ofstream ofs;
-    // ofs.open(".log", std::ofstream::out | std::ofstream::app);
-    // ofs << this->_ship->getCoordinate() << std::endl;
-    // ofs.close();
+    std::ofstream ofs;
+    ofs.open(".log", std::ofstream::out | std::ofstream::app);
+    ofs << dir << std::endl;
+    ofs.close();
 
     return this->_arena;
 }

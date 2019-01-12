@@ -8,16 +8,18 @@
 class Display {
 
 private:
-    WINDOW * _win;
 
     Display(Display const & src);
     Display & operator=(Display const & src);
 
 public:
+    WINDOW * _win;
+
     Display();
     virtual ~Display();
 
-    void draw(char *arena);    
+    void draw(char *arena); 
+    int getInput();   
 };
 
 # endif // DISPLAY_HPP

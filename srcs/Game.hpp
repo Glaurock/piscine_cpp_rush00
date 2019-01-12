@@ -28,7 +28,7 @@ public:
     Game();
     virtual ~Game();
 
-    char * update();
+    char * update(int);
 };
 
 # endif // GAME_HPP

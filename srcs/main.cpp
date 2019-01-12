@@ -5,9 +5,11 @@ int main() {
     Display display;
     Game game;
     char *arena;
+    int dir;
 
     while(1) {
-        arena = game.update();
+        dir = display.getInput();
+        arena = game.update(dir);
         display.draw(arena);
     }
 

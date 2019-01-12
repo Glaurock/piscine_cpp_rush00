@@ -6,12 +6,17 @@ Display::Display() {
     cbreak();
     start_color();
     this->_win = newwin(ARENA_HEIGHT, ARENA_WIDTH, 0, 0);
+    keypad(this->_win, TRUE);
 }
 
 Display::Display(Display const & src) {}
 
 Display::~Display() {
-    // TODO: DESTROY THINGS FOR NCURSES?
+    endwin();
+}
+
+int Display::getInput() {
+    return wgetch(this->_win);
 }
 
 void Display::draw(char *arena) {
