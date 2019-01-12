@@ -3,6 +3,8 @@
 
 #include "Enemy.hpp"
 
+class Game;
+
 class Slicer : public Enemy
 {
 
@@ -14,6 +16,7 @@ class Slicer : public Enemy
     Slicer(int x = 1, int y = 1, int velocity = 1, char type = 'K');
     virtual ~Slicer();
     virtual void move(int); // can be overidden for more subtle patterns
+    virtual void draw(Game *);
 };
 
 #endif // SLICER_HPP

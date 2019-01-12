@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: csimon <csimon@student.42.fr>              +#+  +:+       +#+         #
+#    By: gmonnier <gmonnier@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/10 15:44:42 by gmonnier          #+#    #+#              #
-#    Updated: 2019/01/12 17:59:04 by csimon           ###   ########.fr        #
+#    Updated: 2019/01/12 21:59:43 by gmonnier         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,8 @@ SRC = \
 		srcs/AGameEntity.cpp \
 		srcs/Background.cpp \
 		srcs/Hurler.cpp \
-		srcs/Slicer.cpp
+		srcs/Slicer.cpp \
+		srcs/Boss.cpp
 
 OBJ = $(SRC:%.cpp=%.o)
 

@@ -46,6 +46,8 @@ void Enemy::move(int turn)
   }
 }
 
+void Enemy::draw(Game * game) {}
+
 void Enemy::move(char *arena) // safest method for BG check
 {
   int prevX = this->getXCoordinate();

@@ -28,17 +28,21 @@ Enemy * Game::_enemySpawner() {
 
   switch (rand() % 4)
   {
-    case 0:
-      enemy = new Hurler();
-      break;
-    case 1:
-      enemy = new Slicer();
-      break;
+    // case 0:
+    //   enemy = new Hurler();
+    //   break;
+    // case 1:
+    //   enemy = new Slicer();
+    //   break;
     default:
-      enemy = new Enemy();
+      enemy = new Boss();
       break;
   }
   return enemy;
+}
+
+void Game::setArena(int pos, char type) {
+  this->_arena[pos] = type;
 }
 
 void Game::_handleShip(int input) {
@@ -134,8 +138,14 @@ void Game::_handleEnemies() {
           // this->_enemies[i] = new Enemy(); // get score
         }
       } else {
-        this->_arena[this->_enemies[i]->getCoordinate()] =
-            this->_enemies[i]->getType();
+        // NEW WAY OF HANDLE DRAW, IS THIS OK WE THE REST OF THE CODE?
+        // if this is a boss, call draw() function
+        if (this->_enemies[i]->getType() == 'o') {
+          this->_enemies[i]->draw(this);
+        } else {
+          this->_arena[this->_enemies[i]->getCoordinate()] =
+              this->_enemies[i]->getType();
+        }
       }
     }
 }
