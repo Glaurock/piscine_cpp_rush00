@@ -27,8 +27,8 @@ void Enemy::move(void)
 {
   int velocity = this->getVelocity();
   // std::cout << "I MOVED BUT NOT GOOD" << std::endl;
-  if ((this->_x + velocity) > ARENA_WIDTH ||
-      (this->_x + velocity) < 0) // a border of the window would be reached
+  if ((this->_x + velocity) > ARENA_WIDTH - 5 ||
+      (this->_x + velocity) < 5) //// a border of the window would be reached
   {
     if (velocity > 0)
       this->_y += velocity;
