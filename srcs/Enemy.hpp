@@ -6,12 +6,12 @@
 class Enemy : public AGameEntity {
 
 private:
-    Enemy();
 
     Enemy(Enemy const & src);
     Enemy & operator=(Enemy const & src);
 
 public:
+    Enemy();
     virtual ~Enemy();
 
 };

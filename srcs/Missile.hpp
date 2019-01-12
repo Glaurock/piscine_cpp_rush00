@@ -6,12 +6,12 @@
 class Missile : public AGameEntity {
 
 private:
-    Missile();
 
     Missile(Missile const & src);
     Missile & operator=(Missile const & src);
 
 public:
+    Missile();
     virtual ~Missile();
 
 };

@@ -7,12 +7,12 @@ class Background : public AGameEntity
 {
 
   private:
-    Background();
 
     Background(Background const &src);
     Background &operator=(Background const &src);
 
   public:
+    Background();
     virtual ~Background();
 };
 
