@@ -22,6 +22,8 @@ class Game
     Enemy *_enemies[MAX_ENEMIES];
     Background *_backgrounds[MAX_BACKGROUNDS];
 
+    void _handleShip(int);
+
     Game(Game const &src);
     Game &operator=(Game const &src);
 

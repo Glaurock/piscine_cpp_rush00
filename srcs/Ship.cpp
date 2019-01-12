@@ -5,7 +5,7 @@ Ship::Ship()
     this->_x = ARENA_WIDTH / 2;
     this->_y = ARENA_HEIGHT - 2;
     this->_type = 'S';
-    this->_velocity = 2;
+    this->_velocity = 3;
     this->_lives = 3;
 }
 
@@ -20,18 +20,19 @@ void Ship::move(int input)
     switch (input)
     {
     case KEY_UP:
-        this->_y--;
+        this->_y -= this->_velocity;
         break;
     case KEY_DOWN:
-        this->_y++;
+        this->_y += this->_velocity;
         break;
     case KEY_LEFT:
-        this->_x--;
+        this->_x -= this->_velocity;
         break;
     case KEY_RIGHT:
-        this->_x++;
+        this->_x += this->_velocity;
         break;
     }
+    /* Handle screen size limits */
     if (this->_x <= 1)
         this->_x = 2;
     if (this->_x >= ARENA_WIDTH - 1)
@@ -42,11 +43,7 @@ void Ship::move(int input)
         this->_y = ARENA_HEIGHT - 2;
 }
 
-Missile *Ship::fireMissile(void)
-{
-    Missile *shot = new Missile(this->_x, this->_y + 1);
-    return shot;
-}
+Missile *Ship::fireMissile(void) { return new Missile(this->_x, this->_y + 1); }
 // Ship & Ship::operator=(Ship const & src) {}
 
 void Ship::collided(void)
