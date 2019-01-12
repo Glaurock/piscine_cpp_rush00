@@ -22,8 +22,11 @@ private:
   Missile *_missiles[MAX_MISSILES];
   Enemy *_enemies[MAX_ENEMIES];
   Background *_backgrounds[MAX_BACKGROUNDS];
+  unsigned int _turn;
 
   void _handleShip(int);
+  void _handleBackground();
+  void _addNewBackGroundElem(int, int);
 
   Game(Game const &src);
   Game &operator=(Game const &src);
