@@ -13,6 +13,14 @@ void Background::move() {
     }    
 }
 
+int Background::getMountainCounter() const {
+    return this->_mountainCounter;
+}
+
+void Background::setMountainCounter(int x) {
+    this->_mountainCounter = x;
+}
+
 int Background::getNextFreeSpace(Background ** backgrounds) {
     for (int i = 0; i < MAX_BACKGROUNDS; i++) {
         if (backgrounds[i] == NULL) 

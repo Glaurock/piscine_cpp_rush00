@@ -9,6 +9,7 @@ class Background : public AGameEntity
     Background(Background const &src);
     Background &operator=(Background const &src);
     Background();
+    int _mountainCounter;
 
   public:
     Background(int, int, int, char);
@@ -16,6 +17,8 @@ class Background : public AGameEntity
 
     static int getNextFreeSpace(Background ** backgrounds);    
     void move(void);
+    int getMountainCounter() const;
+    void setMountainCounter(int);
 };
 
 #endif // Background_HPP

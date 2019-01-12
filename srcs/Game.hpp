@@ -7,6 +7,7 @@
 #include "Enemy.hpp"
 #include "Missile.hpp"
 #include "Background.hpp"
+#include "Hurler.hpp"
 
 // remove this later
 #include <fstream>

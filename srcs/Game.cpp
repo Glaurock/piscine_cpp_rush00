@@ -12,7 +12,7 @@ Game::Game(): _turn(0) {
 
   for (int i = 0; i < MAX_MISSILES; i++)
     (this->_missiles[i] = NULL);
-  this->_enemies[0] = new Enemy();
+  this->_enemies[0] = new Hurler();
 }
 
 Game::Game(Game const &src) {}
