@@ -1,17 +1,17 @@
 #include "Enemy.hpp"
 
-Enemy::Enemy(int x, int y, int velocity, char type)
-    : AGameEntity(x, y, velocity, type) {
-  int random;
-  static char list_type[5] = {'H', 'A', 'M', 'U', 'T'};
+Enemy::Enemy(int x, int y, int velocity, char type, int hp)
+    : AGameEntity(x, y, velocity, type), _hp(hp) {
+  std::cout << this->_type << std::endl;
+  // int random;
+  // static char list_type[5] = {'H', 'A', 'M', 'U', 'T'};
 
-  random = 6;
-  // while (random > 5)
-  //   random =
-  //       1 + std::rand() / ((RAND_MAX + 1u) / 5); // needs the ctime/iostream
-  this->_type = list_type[random - 2];
-  this->_velocity = (random % 2) + 1;
-  this->_hp = 1;
+  // random = 6;
+  // // while (random > 5)
+  // //   random =
+  // //       1 + std::rand() / ((RAND_MAX + 1u) / 5); // needs the
+  // ctime/iostream this->_type = list_type[random - 2]; this->_velocity =
+  // (random % 2) + 1; this->_hp = 1;
 }
 
 Enemy::Enemy(Enemy const &src) {}
@@ -23,7 +23,7 @@ Enemy &Enemy::operator=(Enemy const &src) {}
 
 void Enemy::move(void) {
   int velocity = this->getVelocity();
-
+  // std::cout << "I MOVED BUT NOT GOOD" << std::endl;
   if ((this->_x + velocity) > ARENA_WIDTH ||
       (this->_x + velocity) < 0) // a border of the window would be reached
   {
@@ -36,6 +36,7 @@ void Enemy::move(void) {
     this->_x += velocity;
   //   if (this->_y > ARENA_HEIGHT)
   //     delete this;
+  // this->_y += 2;
 }
 
 void Enemy::move(char *arena) // safest method for BG check
