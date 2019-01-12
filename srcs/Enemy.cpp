@@ -1,7 +1,7 @@
 #include "Enemy.hpp"
 
 Enemy::Enemy(int x, int y, int velocity, char type, int hp)
-    : AGameEntity(x, y, velocity, type), _hp(hp)
+    : AGameEntity(x, y, velocity, type), _hp(hp), _direction(1)
 {
   // std::cout << this->_type << std::endl;
   // int random;
@@ -26,21 +26,24 @@ Enemy &Enemy::operator=(Enemy const &src) {}
 void Enemy::move(int turn)
 {
   int velocity = this->getVelocity();
-  // std::cout << "I MOVED BUT NOT GOOD" << std::endl;
-  if ((this->_x + velocity) > ARENA_WIDTH - 5 ||
-      (this->_x + velocity) < 5) //// a border of the window would be reached
-  {
-    if (velocity > 0)
-      this->_y += velocity;
+
+  if (turn % velocity == 0) {
+    // std::cout << "I MOVED BUT NOT GOOD" << std::endl;
+    if ((this->_x + 1) > ARENA_WIDTH - 5 ||
+        (this->_x + 1) < 5) //// a border of the window would be reached
+    {
+      if (this->_direction > 0)
+        this->_y += 1;
+      else
+        this->_y -= 1; // basic enemies only go in one general direction
+      this->_direction *= -1;  // edge was reached, reverse direction
+    }
     else
-      this->_y -= velocity; // basic enemies only go in one general direction
-    this->_velocity *= -1;  // edge was reached, reverse direction
+      this->_x += 1;
+    //   if (this->_y > ARENA_HEIGHT)
+    //     delete this;
+    // this->_y += 2;
   }
-  else
-    this->_x += velocity;
-  //   if (this->_y > ARENA_HEIGHT)
-  //     delete this;
-  // this->_y += 2;
 }
 
 void Enemy::move(char *arena) // safest method for BG check
