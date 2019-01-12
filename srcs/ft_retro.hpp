@@ -9,5 +9,6 @@
 #define MAX_BACKGROUNDS 400
 
 #include <iostream>
+#include <cstdlib>
 
 #endif

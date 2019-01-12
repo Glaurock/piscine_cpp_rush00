@@ -7,7 +7,7 @@ Background::~Background() {}
 
 void Background::move() { 
     this->_y += this->_velocity; 
-    if (this->_y >= ARENA_HEIGHT - 1) {
+    if (this->_y >= ARENA_HEIGHT) {
         this->_y = -1;
         this->_x = -1;
     }    

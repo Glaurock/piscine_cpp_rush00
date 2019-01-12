@@ -1,6 +1,6 @@
 #include "Game.hpp"
 
-Game::Game() {
+Game::Game(): _turn(0) {
   std::memset(this->_arena, ' ', ARENA_WIDTH * ARENA_HEIGHT);
   this->_ship = new Ship();
 
@@ -44,14 +44,27 @@ void Game::_handleShip(int input) {
     this->_ship->getType();
 }
 
+void Game::_addNewBackGroundElem(int x, int y) {
+  Background * elem = new Background(x, y, 1, '*');
+  int i = Background::getNextFreeSpace(this->_backgrounds);
+  this->_backgrounds[i] = elem;
+}
+
 void Game::_handleBackground() {
   /* background spawner : un a droite un a gauche */
-  Background * left = new Background(2, 0, 1, '*');
-  Background * right = new Background(ARENA_WIDTH - 2, 0, 1, '*');
-  int i = Background::getNextFreeSpace(this->_backgrounds);
-  this->_backgrounds[i] = left;
-  i = Background::getNextFreeSpace(this->_backgrounds);
-  this->_backgrounds[i] = right;
+  this->_addNewBackGroundElem(1, 0);
+  this->_addNewBackGroundElem(ARENA_WIDTH - 2, 0);
+  /* every 10 turn, spawn a bar */
+  if (this->_turn % 10 == 0) {
+    /* Found a smart way to handle this*/
+    this->_addNewBackGroundElem(2, 0);
+    this->_addNewBackGroundElem(3, 0);
+    this->_addNewBackGroundElem(4, 0);
+
+    this->_addNewBackGroundElem(ARENA_WIDTH - 3, 0);
+    this->_addNewBackGroundElem(ARENA_WIDTH - 4, 0);
+    this->_addNewBackGroundElem(ARENA_WIDTH - 5, 0);
+  }
 
   for (int i = 0; i < MAX_BACKGROUNDS; i++) // Move backgrounds first
       if (this->_backgrounds[i] != NULL) {
@@ -68,6 +81,8 @@ void Game::_handleBackground() {
 
 char *Game::update(int input) {
 
+  this->_turn++;
+
   /* Do some modification on the arena here */
   std::memset(this->_arena, ' ',
               ARENA_WIDTH *
@@ -75,11 +90,7 @@ char *Game::update(int input) {
 
   this->_handleBackground();
   this->_handleShip(input);
-
   
-
-  this->_handleShip(input);
-
   for (int i = 0; i < MAX_MISSILES;
        i++) // move missiles last. if they hit an enemy,destroy it
     if (this->_missiles[i] != NULL) {
@@ -132,6 +143,7 @@ char *Game::update(int input) {
   // ofs.open(".log", std::ofstream::out | std::ofstream::app);
   // ofs << input << std::endl;
   // ofs.close();
+
 
   return this->_arena;
 }
