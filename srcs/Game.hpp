@@ -15,6 +15,8 @@
 #include <fstream>
 #include <string>
 
+class Background;
+
 class Game
 {
 
@@ -28,7 +30,6 @@ private:
 
   void _handleShip(int);
   void _handleBackground();
-  void _addNewBackGroundElem(int, int);
 
   Game(Game const &src);
   Game &operator=(Game const &src);
@@ -38,6 +39,7 @@ public:
   virtual ~Game();
 
   char *update(int input);
+  void addNewBackGroundElem(int, int);
 };
 
 #endif // GAME_HPP

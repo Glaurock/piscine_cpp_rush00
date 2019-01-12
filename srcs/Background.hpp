@@ -2,6 +2,9 @@
 #define BACKGROUND_HPP
 
 #include "AGameEntity.hpp"
+#include "Game.hpp"
+
+class Game;
 
 class Background : public AGameEntity
 {
@@ -9,16 +12,14 @@ class Background : public AGameEntity
     Background(Background const &src);
     Background &operator=(Background const &src);
     Background();
-    int _mountainCounter;
 
   public:
     Background(int, int, int, char);
     virtual ~Background();
 
-    static int getNextFreeSpace(Background ** backgrounds);    
+    static int getNextFreeSpace(Background ** backgrounds);
+    static void popMountain(Game * game);
     void move(void);
-    int getMountainCounter() const;
-    void setMountainCounter(int);
 };
 
 #endif // Background_HPP

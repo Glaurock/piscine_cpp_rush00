@@ -13,12 +13,16 @@ void Background::move() {
     }    
 }
 
-int Background::getMountainCounter() const {
-    return this->_mountainCounter;
-}
+void Background::popMountain(Game * game) {
+    int size = rand() % 6 + 1;
 
-void Background::setMountainCounter(int x) {
-    this->_mountainCounter = x;
+    for (int i = 1; i < size; i++) {
+        game->addNewBackGroundElem(i, 0);
+    }
+    size = rand() % 6 + 1;
+    for (int i = 1; i < size; i++) {
+        game->addNewBackGroundElem(ARENA_WIDTH - i - 1, 0);
+    }   
 }
 
 int Background::getNextFreeSpace(Background ** backgrounds) {

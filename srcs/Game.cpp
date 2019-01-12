@@ -44,7 +44,7 @@ void Game::_handleShip(int input) {
   this->_arena[this->_ship->getCoordinate()] = this->_ship->getType();
 }
 
-void Game::_addNewBackGroundElem(int x, int y) {
+void Game::addNewBackGroundElem(int x, int y) {
   Background *elem = new Background(x, y, 1, '*');
   int i = Background::getNextFreeSpace(this->_backgrounds);
   this->_backgrounds[i] = elem;
@@ -52,19 +52,13 @@ void Game::_addNewBackGroundElem(int x, int y) {
 
 void Game::_handleBackground() {
   /* background spawner : un a droite un a gauche */
-  this->_addNewBackGroundElem(1, 0);
-  this->_addNewBackGroundElem(ARENA_WIDTH - 2, 0);
+  this->addNewBackGroundElem(1, 0);
+  this->addNewBackGroundElem(ARENA_WIDTH - 2, 0);
   /* every 10 turn, spawn a bar */
-  if (this->_turn % 10 == 0) {
+  // if (this->_turn % 10 == 0) {
     /* Found a smart way to handle this*/
-    this->_addNewBackGroundElem(2, 0);
-    this->_addNewBackGroundElem(3, 0);
-    this->_addNewBackGroundElem(4, 0);
-
-    this->_addNewBackGroundElem(ARENA_WIDTH - 3, 0);
-    this->_addNewBackGroundElem(ARENA_WIDTH - 4, 0);
-    this->_addNewBackGroundElem(ARENA_WIDTH - 5, 0);
-  }
+  Background::popMountain(this);
+  // }
 
   for (int i = 0; i < MAX_BACKGROUNDS; i++) // Move backgrounds first
     if (this->_backgrounds[i] != NULL) {
