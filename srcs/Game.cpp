@@ -13,7 +13,7 @@ Game::Game() : _turn(0), _score(0) {
   for (int i = 0; i < MAX_MISSILES; i++)
     (this->_missiles[i] = NULL);
   this->_enemies[0] = new Hurler();
-  //   this->_enemies[1] = new Hurler();
+  this->_enemies[1] = new Slicer();
 }
 
 Game::Game(Game const &src) {}
@@ -41,6 +41,8 @@ void Game::_handleShip(int input) {
     delete shot;
   }
   this->_ship->move(input);
+  if (this->_arena[this->_ship->getCoordinate()] != ' ')
+    this->_ship->collided();
   this->_arena[this->_ship->getCoordinate()] = this->_ship->getType();
 }
 
@@ -119,8 +121,9 @@ char *Game::update(int input) {
               // break;
             }
         if (this->_enemies[i]->collided()) {
-          this->_arena[this->_enemies[i]->getCoordinate()] = ' ';
+          this->_arena[this->_enemies[i]->getCoordinate()] = 'X';
           delete this->_enemies[i];
+          this->_enemies[i] = NULL;
           // this->_enemies[i] = new Enemy(); // get score
         }
       } else {
