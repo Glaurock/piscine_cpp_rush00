@@ -1,24 +1,27 @@
 #ifndef SHIP_HPP
 #define SHIP_HPP
 
-#include <ncurses.h>
 #include "AGameEntity.hpp"
 #include "Missile.hpp"
 #include "ft_retro.hpp"
+#include <ncurses.h>
 
-class Ship : public AGameEntity {
+class Ship : public AGameEntity
+{
 
-private:
-    Ship(Ship const & src);
-    Ship & operator=(Ship const & src);
+  private:
+    Ship(Ship const &src);
+    Ship &operator=(Ship const &src);
+    int _lives;
 
-public:
+  public:
     Ship();
     virtual ~Ship();
 
     void move();
     void move(int dir);
     Missile *fireMissile(void);
+    void collided(void);
 };
 
 #endif // SHIP_HPP

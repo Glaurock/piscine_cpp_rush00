@@ -10,3 +10,5 @@ Missile::~Missile() {}
 Missile &Missile::operator=(Missile const &src) {}
 
 void Missile::move(void) { this->_y += this->_velocity; }
+
+// void Missile::collided(void) { }

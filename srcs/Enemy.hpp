@@ -8,6 +8,7 @@ class Enemy : public AGameEntity
   private:
     Enemy(Enemy const &src);
     Enemy &operator=(Enemy const &src);
+    int _hp;
 
   public:
     // Enemy();
@@ -15,6 +16,7 @@ class Enemy : public AGameEntity
     virtual ~Enemy();
     void move(void); // can be overidden for more subtle patterns
     void move(char *arena);
+    void collided(void);
 };
 
 #endif // ENEMY_HPP

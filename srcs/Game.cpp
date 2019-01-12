@@ -48,6 +48,10 @@ char *Game::update(int input) {
         delete this->_enemies[i];
         this->_enemies[i] = new Enemy();
       }
+      if (this->_arena[this->_enemies[i]->getCoordinate()] == 'S')
+        this->_ship
+            ->collided(); // we have to implement a live system, respawn at
+                          // neutral coordinates, flashes while invulnerable
       this->_arena[this->_enemies[i]->getCoordinate()] =
           this->_enemies[i]->getType();
     }
@@ -56,6 +60,7 @@ char *Game::update(int input) {
        i++) // move missiles last. if they hit an enemy,destroy it
     if (this->_missiles[i] != NULL) {
       this->_missiles[i]->move();
+      // if (this->_arena[this->_enemies[i]->getCoordinate()] != ' ')
       this->_arena[this->_missiles[i]->getCoordinate()] =
           this->_missiles[i]->getType();
     }
