@@ -2,11 +2,8 @@
 # define DISPLAY_HPP
 
 # include <ncurses.h>
-# include <cstring>
 # include <iostream>
-
-# define ARENA_WIDTH 100
-# define ARENA_HEIGHT 30
+# include "ft_retro.hpp"
 
 class Display {
 

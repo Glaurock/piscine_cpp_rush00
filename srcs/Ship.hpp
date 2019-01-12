@@ -6,12 +6,12 @@
 class Ship : public AGameEntity {
 
 private:
-    Ship();
 
     Ship(Ship const & src);
     Ship & operator=(Ship const & src);
 
 public:
+    Ship();
     virtual ~Ship();
 
 };
