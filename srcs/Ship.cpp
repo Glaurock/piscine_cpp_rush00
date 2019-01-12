@@ -33,6 +33,14 @@ void Ship::move(int input)
             this->_x++;
             break ;
     }
+    if (this->_x <= 1)
+        this->_x = 2;
+    if (this->_x >= ARENA_WIDTH - 1)
+        this->_x = ARENA_WIDTH - 2;
+    if (this->_y <= 1)
+        this->_y = 2;
+    if (this->_y >= ARENA_HEIGHT - 1)
+        this->_y = ARENA_HEIGHT - 2;
 }
 
 Missile *Ship::fireMissile(void)
