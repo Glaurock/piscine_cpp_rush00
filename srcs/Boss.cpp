@@ -6,7 +6,6 @@ Boss::Boss() : _hp(BOSS_HP)
   this->_type = 'o';
   this->_direction = 1;
   this->_size = sizeof(Boss::boss1) / sizeof(int);
-  this->_surface = new Enemy *[this->_size]; /* Leaks here I think */
   for (int i = 0; i < this->_size; i++)
   {
     this->_surface[i] = new Enemy(Boss::boss1[i] % ARENA_WIDTH + 1,
@@ -18,7 +17,8 @@ Boss::~Boss()
 {
   for (int i = 0; i < this->_size; i++)
   {
-    delete this->_surface[i];
+    if (this->_surface[i] != NULL)
+      delete this->_surface[i];
     this->_surface[i] = NULL;
   }
 }

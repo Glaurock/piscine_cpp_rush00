@@ -16,7 +16,8 @@ int main()
         if (input == 27)
         {
             delete game;
-            std::exit(0);
+            endwin();
+            return (0);
         }
         arena = game->update(input);
         if (game->getLives() == 0)
@@ -27,7 +28,10 @@ int main()
             {
                 input = display.getInput();
                 if (input == 27)
-                    std::exit(0);
+                {
+                    endwin();
+                    return (0);
+                }
             }
         }
         display.draw(arena);

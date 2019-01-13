@@ -6,7 +6,7 @@ Ship::Ship()
     this->_y = ARENA_HEIGHT - 2;
     this->_type = 'S';
     this->_velocity = 3;
-    this->_lives = 30;
+    this->_lives = 4;
 }
 
 // Ship::Ship(Ship const & src) {}
