@@ -21,8 +21,8 @@ int main()
         arena = game->update(input);
         if (game->getLives() == 0)
         {
-            display.displayScore(*game);
             delete game;
+            display.game_over();
             while (1)
             {
                 input = display.getInput();

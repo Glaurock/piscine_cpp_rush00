@@ -6,13 +6,9 @@ Enemy::Enemy(int x, int y, int velocity, char type)
   return;
 }
 
-Enemy::Enemy(Enemy const &src) {}
-
 Enemy::~Enemy()
 {
 } // we could display a '*' for one frame where an enemy was killed
-
-Enemy &Enemy::operator=(Enemy const &src) {}
 
 int Enemy::getDirection(void)
 {

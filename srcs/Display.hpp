@@ -20,6 +20,7 @@ public:
   Display();
   virtual ~Display();
 
+  void game_over(void);
   void draw(char *arena);
   void displayScore(Game const &game);
   int getInput();

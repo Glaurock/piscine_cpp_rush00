@@ -19,8 +19,6 @@ Display::Display()
     nodelay(this->_win, true);
 }
 
-Display::Display(Display const &src) {}
-
 Display::~Display() { endwin(); }
 
 int Display::getInput() { return wgetch(this->_win); }
@@ -45,29 +43,34 @@ int getColor(char c)
         return 5;
     case '*':
         return 1;
+    default:
+        return 0;
     }
+}
+
+void Display::game_over(void)
+{
+    int row;
+    int col;
+    getmaxyx(this->_end, row, col);
+
+    wborder(this->_end, '|', '|', '-', '-', '+', '+', '+', '+');
+    mvwprintw(this->_end, (row / 2), (col - 9) / 2, "GAME OVER");
+    mvwprintw(this->_end, (row / 2 + 1), (col - 18) / 2, "PRESS ESC TO QUIT");
+    wrefresh(this->_end);
+    return;
 }
 
 void Display::displayScore(Game const &game)
 {
     int score = game.getScore();
     int lives = game.getLives();
-    int row;
-    int col;
-    getmaxyx(this->_end, row, col);
-    if (lives == 0)
-    {
-        wborder(this->_end, '|', '|', '-', '-', '+', '+', '+', '+');
-        mvwprintw(this->_end, (row / 2), (col - 9) / 2, "GAME OVER");
-        mvwprintw(this->_end, (row / 2 + 1), (col - 18) / 2, "PRESS ESC TO QUIT");
-        wrefresh(this->_end);
-        return;
-    }
+
     mvwprintw(this->_score, 1, 2, "Score:              %d", score);
     wmove(this->_score, 3, 2);
     //   mvwprintw(this->_score, 2, 2, "Score:              %d", score);
     wattron(this->_score, COLOR_PAIR(5));
-    for (int i = 0; i < 5; i++)
+    for (int i = 0; i < 7; i++)
     {
         wmove(this->_score, 3, 2 + i * 2);
         if (i < lives)
@@ -102,5 +105,3 @@ void Display::draw(char *arena)
     wrefresh(this->_win);
     wrefresh(this->_score);
 }
-
-Display &Display::operator=(Display const &src) {}

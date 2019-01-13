@@ -1,6 +1,6 @@
 #include "Bonus.hpp"
 
-Bonus::Bonus(int x, int y, int velocity, char type): AGameEntity(x, y, velocity, type) {}
+Bonus::Bonus(int x, int y, int velocity, char type) : AGameEntity(x, y, velocity, type) {}
 
 // Bonus::Bonus(Bonus const & src) {}
 
