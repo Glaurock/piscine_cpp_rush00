@@ -69,15 +69,18 @@ void Game::_handleShip(int input) {
 }
 
 void Game::addNewBackGroundElem(int x, int y) {
+  if (this->_arena[y * ARENA_WIDTH + x] == '*')
+    return ;
   Background *elem = new Background(x, y, 1, '*');
   int i = Background::getNextFreeSpace(this->_backgrounds);
   this->_backgrounds[i] = elem;
 }
 
 void Game::_handleBackground() {
-  /* background spawner : un a droite un a gauche */
-  /* every 10 turn, spawn a bar */
   Background::popMountain(this);
+  if (Background::mountainCounter != 0 || this->_turn % 30 == 0) {
+    Background::bigMountain(this);
+  }
 
   for (int i = 0; i < MAX_BACKGROUNDS; i++) // Move backgrounds first
     if (this->_backgrounds[i] != NULL) {

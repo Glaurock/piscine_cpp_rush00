@@ -20,7 +20,7 @@ int main()
         }
         arena = game.update(input);
         display.draw(arena);
-        usleep(100000);
+        usleep(50000);
     }
 
     return (0);

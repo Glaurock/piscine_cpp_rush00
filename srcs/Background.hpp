@@ -19,7 +19,11 @@ class Background : public AGameEntity
 
     static int getNextFreeSpace(Background ** backgrounds);
     static void popMountain(Game * game);
+    static void bigMountain(Game * game);
     void move(int);
+
+    static unsigned int mountainCounter;
+    static bool mountainSide;
 };
 
 #endif // Background_HPP
