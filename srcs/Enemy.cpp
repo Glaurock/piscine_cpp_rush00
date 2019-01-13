@@ -60,6 +60,10 @@ int Enemy::move(int turn, char *arena)
   {
     this->_x += this->_direction;
   }
+  if (turn % 15 == 0)
+  {
+    this->_y += 1;
+  }
   return 0;
 }
 

@@ -30,6 +30,26 @@ Game::Game(Game const &src) {}
 
 Game::~Game()
 {
+  for (int i = 0; i < MAX_BACKGROUNDS; i++)
+  {
+    delete this->_backgrounds[i];
+    (this->_backgrounds[i] = NULL);
+  }
+  for (int i = 0; i < MAX_ENEMIES; i++)
+  {
+    delete this->_enemies[i];
+    (this->_enemies[i] = NULL);
+  }
+  for (int i = 0; i < MAX_MISSILES; i++)
+  {
+    delete this->_missiles[i];
+    (this->_missiles[i] = NULL);
+  }
+  for (int i = 0; i < MAX_EN_MISSILES; i++)
+  {
+    delete this->_missilesEnemy[i];
+    (this->_missilesEnemy[i] = NULL);
+  }
   // TODO: DELETE THINGS
 }
 
@@ -202,8 +222,10 @@ void Game::_handleEnemies()
         switch (c)
         {
         case 'S':
+        {
           this->_ship->collided();
           break;
+        }
         case '|':
         {
           for (int x = 0; x < MAX_MISSILES; x++)
@@ -252,7 +274,6 @@ char *Game::update(int input)
   this->_handleShip(input);
   this->_handleMissiles();
   this->_handleEnemies();
-
   return this->_arena;
 }
 

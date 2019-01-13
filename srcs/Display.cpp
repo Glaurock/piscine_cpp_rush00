@@ -14,6 +14,7 @@ Display::Display()
     init_pair(6, COLOR_BLUE, COLOR_BLUE);
     this->_win = newwin(ARENA_HEIGHT, ARENA_WIDTH, 0, 0);
     this->_score = newwin(10, 30, 0, ARENA_WIDTH + 5);
+    this->_end = newwin(ARENA_HEIGHT / 3, ARENA_WIDTH / 3, ARENA_HEIGHT / 3, ARENA_WIDTH / 3);
     keypad(this->_win, TRUE);
     nodelay(this->_win, true);
 }
@@ -51,7 +52,17 @@ void Display::displayScore(Game const &game)
 {
     int score = game.getScore();
     int lives = game.getLives();
-
+    int row;
+    int col;
+    getmaxyx(this->_end, row, col);
+    if (lives == 0)
+    {
+        wborder(this->_end, '|', '|', '-', '-', '+', '+', '+', '+');
+        mvwprintw(this->_end, (row / 2), (col - 9) / 2, "GAME OVER");
+        mvwprintw(this->_end, (row / 2 + 1), (col - 18) / 2, "PRESS ESC TO QUIT");
+        wrefresh(this->_end);
+        return;
+    }
     mvwprintw(this->_score, 1, 2, "Score:              %d", score);
     wmove(this->_score, 3, 2);
     //   mvwprintw(this->_score, 2, 2, "Score:              %d", score);
