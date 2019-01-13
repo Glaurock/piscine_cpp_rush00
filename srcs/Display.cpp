@@ -83,7 +83,7 @@ void Display::displayScore(Game const &game, int timer)
         }
     }
     wattroff(this->_score, COLOR_PAIR(5));
-    mvwprintw(this->_score, 5, 2, "Timer:        %d:%d", (timer / 20000) / 60, (timer / 20000) % 60);
+    mvwprintw(this->_score, 5, 2, "Timer:        %d:%d ", (timer / 20000) / 60, (timer / 20000) % 60);
     wrefresh(this->_score);
 }
 

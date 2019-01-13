@@ -27,14 +27,15 @@ private:
   Bonus *_bonuses[MAX_BONUS];
   unsigned int _turn;
   unsigned int _score;
+  unsigned int _extra_score;
 
   void _handleShip(int);
   void _handleBackground();
   void _handleMissiles();
   void _handleEnemies();
   void _handleBonus();
-  void _enemyFireMissile(Enemy * enemy);
-  void _shipFireMissile(bool * shooted, bool doubleShot);
+  void _enemyFireMissile(Enemy *enemy);
+  void _shipFireMissile(bool *shooted, bool doubleShot);
   Enemy *_enemySpawner();
   void _spawn();
 
