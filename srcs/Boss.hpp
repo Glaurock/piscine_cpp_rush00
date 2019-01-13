@@ -27,6 +27,8 @@ class Boss : public Enemy
     virtual bool collided(void);
     virtual bool checkOutOfBounds(void);
     virtual int checkBorder(char *arena);
+    virtual int getXCoordinate(void) const;
+    virtual int getYCoordinate(void) const;
     static int boss1[6];
 };
 

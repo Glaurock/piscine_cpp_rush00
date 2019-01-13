@@ -10,7 +10,7 @@ private:
     Bonus & operator=(Bonus const & src);
 
 public:
-    Bonus(int x = 1, int y = 1, int velocity = 1, char type = 'B');
+    Bonus(int x = ARENA_WIDTH / 2, int y = 3, int velocity = 5, char type = 'B');
     virtual ~Bonus();
     virtual int move(int, char *arena);
 };

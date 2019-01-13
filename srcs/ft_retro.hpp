@@ -17,7 +17,7 @@
 #define SPAWN_TURN 100
 #define BOSS_SPAWN 200
 
-#define BOSS_HP 20
+#define BOSS_HP 1
 
 #include <cstdlib>
 #include <iostream>

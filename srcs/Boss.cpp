@@ -103,6 +103,18 @@ bool Boss::checkOutOfBounds(void)
   return false;
 }
 
+// int Boss::getCoordinate(void) const {
+//   return (this->_surface[4]->getYCoordinate() * ARENA_WIDTH + this->_surface[i]->getXCoordinate());
+// }
+
+int Boss::getXCoordinate(void) const {
+  return (this->_surface[0]->getXCoordinate());
+}
+
+int Boss::getYCoordinate(void) const {
+  return (this->_surface[0]->getYCoordinate());
+}
+
 int Boss::boss1[] = {41 + ARENA_WIDTH, 42 + ARENA_WIDTH,
                      41 + (2 * ARENA_WIDTH),
                      42 + (2 * ARENA_WIDTH),

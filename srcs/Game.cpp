@@ -254,9 +254,10 @@ void Game::_handleEnemies()
           {
             this->_arena[this->_enemies[i]->getCoordinate()] = 'X';
             if (this->_enemies[i]->getType() == 'o') {
-              for (int i = 0; i < MAX_BONUS; i++) {
-                if (this->_bonuses[i] == NULL) {
-                  this->_bonuses[i] = new Bonus();
+              for (int j = 0; j < MAX_BONUS; j++) {
+                if (this->_bonuses[j] == NULL) {
+                  this->_bonuses[j] = 
+                    new Bonus(this->_enemies[i]->getXCoordinate(), this->_enemies[i]->getYCoordinate());
                 }
               }
             }
