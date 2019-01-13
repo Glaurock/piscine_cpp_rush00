@@ -8,22 +8,22 @@ class Game;
 
 class Background : public AGameEntity
 {
-  private:
-    Background(Background const &src);
-    Background &operator=(Background const &src);
-    Background();
+private:
+  Background(Background const &src);
+  Background &operator=(Background const &src);
+  Background();
 
-  public:
-    Background(int, int, int, char);
-    virtual ~Background();
+public:
+  Background(int, int, int, char);
+  virtual ~Background();
 
-    static int getNextFreeSpace(Background ** backgrounds);
-    static void popMountain(Game * game);
-    static void bigMountain(Game * game);
-    void move(int);
+  static int getNextFreeSpace(Background **backgrounds);
+  static void popMountain(Game *game);
+  static void bigMountain(Game *game);
+  void move(int, char *arena);
 
-    static unsigned int mountainCounter;
-    static bool mountainSide;
+  static unsigned int mountainCounter;
+  static bool mountainSide;
 };
 
 #endif // Background_HPP

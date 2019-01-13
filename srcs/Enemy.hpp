@@ -3,7 +3,8 @@
 
 #include "AGameEntity.hpp"
 
-class Enemy : public AGameEntity {
+class Enemy : public AGameEntity
+{
 
 protected:
   int _direction;
@@ -14,11 +15,11 @@ private:
   int _hp;
 
 public:
-  Enemy(int x = 5, int y = 3, int velocity = 2, char type = 'T', int hp = 1);
+  Enemy(int x = 10, int y = 3, int velocity = 2, char type = 'T', int hp = 1);
   virtual ~Enemy();
 
-  virtual void move(int); // can be overidden for more subtle patterns
-  virtual void move(char *arena);
+  virtual void move(int, char *arena); // can be overidden for more subtle patterns
+  virtual void move(int);
   bool collided(void);
   // virtual void draw(char (& arena)[ARENA_SIZE]);
 };

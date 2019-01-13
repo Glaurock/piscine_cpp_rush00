@@ -14,7 +14,7 @@ private:
 public:
   Missile(int x, int y, int velocity = 1, char type = '|'); // x/y refer to ship
   virtual ~Missile();
-  void move(int); // can be overidden for more subtle patterns
+  void move(int, char *arena); // can be overidden for more subtle patterns
   static const char _type;
 };
 

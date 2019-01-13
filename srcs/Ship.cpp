@@ -13,7 +13,7 @@ Ship::Ship()
 
 Ship::~Ship() {}
 
-void Ship::move(int input)
+void Ship::move(int input, char *arena)
 {
     switch (input)
     {

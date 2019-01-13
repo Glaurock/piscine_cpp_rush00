@@ -4,7 +4,7 @@ Background::Background(int x, int y, int velocity, char type) : AGameEntity(x, y
 
 Background::~Background() {}
 
-void Background::move(int turn)
+void Background::move(int turn, char *arena)
 {
     this->_y++;
     if (this->_y >= ARENA_HEIGHT)

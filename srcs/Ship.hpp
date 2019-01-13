@@ -21,7 +21,7 @@ public:
   virtual ~Ship();
 
   int getLives(void) const;
-  void move(int dir);
+  void move(int dir, char *arena);
   Missile *fireMissile(void);
   void collided(void);
 };
