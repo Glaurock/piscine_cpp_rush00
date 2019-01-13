@@ -35,6 +35,7 @@ int Boss::move(int turn, char *arena)
   if (this->checkBorder(arena)) {
     for (int i = 0; i < this->_size; i++) {
       this->_surface[i]->setDirection(-1);
+      this->_surface[i]->bounce();
     }
   }
 
@@ -51,11 +52,14 @@ int Boss::move(int turn, char *arena)
 
 int Boss::checkBorder(char *arena) {
   int next_coordinate;
+  int x;
+  int dir;
 
   for (int i = 0; i < this->_size; i++) {
-    next_coordinate = this->_surface[i]->getYCoordinate() * ARENA_WIDTH 
-    + (this->_surface[i]->getXCoordinate() + this->_surface[i]->getDirection());
-    if (arena[next_coordinate % ARENA_SIZE] == '*') {
+    x = this->_surface[i]->getXCoordinate();
+    dir = this->_surface[i]->getDirection() * 4;
+    next_coordinate = this->_surface[i]->getYCoordinate() * ARENA_WIDTH + (x + dir);
+    if (arena[next_coordinate % ARENA_SIZE] == '*' || (x + dir == ARENA_WIDTH - MAX_BACKGROUNDS_SIZE)) {
       return 1;
     }
   }

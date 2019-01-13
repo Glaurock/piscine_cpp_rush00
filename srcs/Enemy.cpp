@@ -24,12 +24,21 @@ void Enemy::setDirection(int sign)
   this->_direction *= sign;
 }
 
+void Enemy::setX(int x) {
+  this->_x = x;
+}
+
+void Enemy::bounce() { 
+    this->_x += (2 * this->_direction) % ARENA_WIDTH;
+    this->_y++;
+}
+
 int Enemy::checkBorder(char *arena) { 
   int next_coordinate = this->_y * ARENA_WIDTH + (this->_x + this->_direction);
 
   if (arena[next_coordinate % ARENA_SIZE] == '*') {
     this->_direction *= 1;
-    this->_x += (4 * this->_direction) % ARENA_WIDTH;
+    this->bounce();
     return 1;
   }
   return 0;
