@@ -34,7 +34,7 @@ private:
   void _handleEnemies();
   void _handleBonus();
   void _enemyFireMissile(Enemy * enemy);
-  void _shipFireMissile(bool * shooted);
+  void _shipFireMissile(bool * shooted, bool doubleShot);
   Enemy *_enemySpawner();
   void _spawn();
 
