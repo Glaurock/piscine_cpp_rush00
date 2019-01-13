@@ -32,6 +32,7 @@ int Enemy::move(int turn, char *arena)
   int retval = 0;
   int prevX = this->getXCoordinate();
   int prevY = this->getYCoordinate();
+
   if (turn % velocity == 0)
   {
     if ((this->_x + this->_direction) > ARENA_WIDTH - MAX_BACKGROUNDS_SIZE + 1 ||
