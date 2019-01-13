@@ -13,7 +13,7 @@ Ship::Ship()
 
 Ship::~Ship() {}
 
-void Ship::move(int input, char *arena)
+int Ship::move(int input, char *arena)
 {
     switch (input)
     {
@@ -39,6 +39,7 @@ void Ship::move(int input, char *arena)
         this->_y = 2;
     if (this->_y >= ARENA_HEIGHT - 1)
         this->_y = ARENA_HEIGHT - 2;
+    return 0;
 }
 
 Missile *Ship::fireMissile(void) { return new Missile(this->_x, this->_y + 1); }

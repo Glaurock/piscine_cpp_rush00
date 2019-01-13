@@ -9,10 +9,10 @@ Slicer::~Slicer() {}
 
 void Slicer::draw(Game *game) {}
 
-void Slicer::move(int turn, char *arena)
+int Slicer::move(int turn, char *arena)
 {
   int velocity = this->getVelocity();
-
+  int retval = 0;
   if (turn % velocity == 0)
   {
     // std::cout << "I MOVED BUT NOT GOOD" << std::endl;
@@ -24,6 +24,7 @@ void Slicer::move(int turn, char *arena)
       else
         this->_y -= 1;        // basic enemies only go in one general direction
       this->_direction *= -1; // edge was reached, reverse direction
+      retval = 1;
     }
     else
       this->_x += 1;
@@ -34,6 +35,7 @@ void Slicer::move(int turn, char *arena)
     this->_y++;
     this->_x++;
   }
+  return retval;
 }
 
 // Slicer & Slicer::operator=(Slicer const & src) {}

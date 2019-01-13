@@ -4,7 +4,7 @@ Background::Background(int x, int y, int velocity, char type) : AGameEntity(x, y
 
 Background::~Background() {}
 
-void Background::move(int turn, char *arena)
+int Background::move(int turn, char *arena)
 {
     this->_y++;
     if (this->_y >= ARENA_HEIGHT)
@@ -12,6 +12,7 @@ void Background::move(int turn, char *arena)
         this->_y = -1;
         this->_x = -1;
     }
+    return 0;
 }
 
 void Background::popMountain(Game *game)

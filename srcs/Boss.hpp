@@ -21,7 +21,7 @@ class Boss : public Enemy
     int getSize() const;
 
     void draw(char (&arena)[ARENA_SIZE]);
-    virtual void move(int, char *arena);
+    virtual int move(int, char *arena);
     virtual char getCollision(char *arena);
     static int boss1[6];
 };

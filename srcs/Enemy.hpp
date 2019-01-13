@@ -18,8 +18,8 @@ public:
   Enemy(int x = 10, int y = 3, int velocity = 2, char type = 'T', int hp = 1);
   virtual ~Enemy();
 
-  virtual void move(int, char *arena); // can be overidden for more subtle patterns
-  virtual void move(int);
+  virtual int move(int, char *arena); // can be overidden for more subtle patterns
+  virtual int move(int);
   bool collided(void);
   // virtual void draw(char (& arena)[ARENA_SIZE]);
 };

@@ -9,9 +9,10 @@ Hurler::~Hurler() {}
 
 void Hurler::draw(Game *game) {}
 
-void Hurler::move(int turn, char *arena)
+int Hurler::move(int turn, char *arena)
 {
   int velocity = this->getVelocity();
+  int retval = 0;
 
   if (turn % velocity == 0)
   {
@@ -24,6 +25,7 @@ void Hurler::move(int turn, char *arena)
       else
         this->_y -= 1;        // basic enemies only go in one general direction
       this->_direction *= -1; // edge was reached, reverse direction
+      retval = 1;
     }
     else
       this->_x += 1;
@@ -33,6 +35,7 @@ void Hurler::move(int turn, char *arena)
     // this->_y += 2;
     this->_y += 2;
   }
+  return retval;
 }
 
 // Hurler & Hurler::operator=(Hurler const & src) {}

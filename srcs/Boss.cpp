@@ -27,17 +27,16 @@ void Boss::draw(char (&arena)[ARENA_SIZE])
   }
 }
 
-void Boss::move(int turn, char *arena)
+int Boss::move(int turn, char *arena)
 {
   for (int i = 0; i < this->_size; i++)
   {
     this->_surface[i]->move(turn, arena); // care when we will remove Enemy move function
+    return 979743;
   }
 }
 
 int Boss::getSize() const { return this->_size; }
-
-int Boss::boss1[] = {141, 142, 241, 242, 340, 343};
 
 char Boss::getCollision(char *arena)
 {
@@ -53,3 +52,8 @@ char Boss::getCollision(char *arena)
   }
   return worst_collision;
 }
+
+int Boss::boss1[] = {41 + ARENA_WIDTH, 42 + ARENA_WIDTH,
+                     41 + (2 * ARENA_WIDTH),
+                     42 + (2 * ARENA_WIDTH),
+                     40 + (3 * ARENA_WIDTH), 43 + (3 * ARENA_WIDTH)};

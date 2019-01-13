@@ -20,7 +20,7 @@ public:
   static int getNextFreeSpace(Background **backgrounds);
   static void popMountain(Game *game);
   static void bigMountain(Game *game);
-  void move(int, char *arena);
+  int move(int, char *arena);
 
   static unsigned int mountainCounter;
   static bool mountainSide;

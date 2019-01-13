@@ -9,7 +9,7 @@ Missile::~Missile() {}
 
 Missile &Missile::operator=(Missile const &src) {}
 
-void Missile::move(int turn, char *arena)
+int Missile::move(int turn, char *arena)
 {
     this->_y--;
     if (this->_y <= 1)
@@ -17,6 +17,7 @@ void Missile::move(int turn, char *arena)
         this->_y = -1;
         this->_x = -1;
     }
+    return 0;
 }
 
 char const Missile::_type = '|';
