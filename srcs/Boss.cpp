@@ -16,7 +16,11 @@ Boss::Boss() : _hp(BOSS_HP)
 
 Boss::~Boss()
 {
-  // destruct game objects
+  for (int i = 0; i < this->_size; i++)
+  {
+    delete this->_surface[i];
+    this->_surface[i] = NULL;
+  }
 }
 
 void Boss::draw(char (&arena)[ARENA_SIZE])
@@ -85,14 +89,7 @@ bool Boss::collided(void)
 {
   this->_hp -= 1;
   if (this->_hp == 0)
-  {
-    for (int i = 0; i < this->_size; i++)
-    {
-      delete this->_surface[i];
-      this->_surface[i] = NULL;
-      return true;
-    }
-  }
+    return true;
   return false;
 }
 

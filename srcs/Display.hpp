@@ -9,19 +9,20 @@
 class Display
 {
 
-  private:
-    Display(Display const &src);
-    Display &operator=(Display const &src);
+private:
+  Display(Display const &src);
+  Display &operator=(Display const &src);
 
-  public:
-    WINDOW *_win;
-    WINDOW *_score;
-    Display();
-    virtual ~Display();
+public:
+  WINDOW *_win;
+  WINDOW *_score;
+  WINDOW *_end;
+  Display();
+  virtual ~Display();
 
-    void draw(char *arena);
-    void displayScore(Game const &game);
-    int getInput();
+  void draw(char *arena);
+  void displayScore(Game const &game);
+  int getInput();
 };
 
 #endif // DISPLAY_HPP

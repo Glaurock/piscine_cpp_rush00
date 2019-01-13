@@ -48,8 +48,8 @@ Missile *Ship::fireMissile(void) { return new Missile(this->_x, this->_y - 1); }
 void Ship::collided(void)
 {
     this->_lives -= 1;
-    if (this->_lives == 0)
-        std::exit(0);           // display game over, etc
+    // if (this->_lives == 0)
+    //     ;           // display game over, etc
     this->_x = ARENA_WIDTH / 2; // respawn at start
     this->_y = ARENA_HEIGHT - 2;
 }
