@@ -263,13 +263,11 @@ void Game::_handleEnemies()
           if (this->_enemies[i]->collided())
           {
             this->_arena[this->_enemies[i]->getCoordinate() % ARENA_SIZE] = 'X';
-            if (this->_enemies[i]->getType() == 'o')
-            {
-              for (int i = 0; i < MAX_BONUS; i++)
-              {
-                if (this->_bonuses[i] == NULL)
-                {
-                  this->_bonuses[i] = new Bonus();
+            if (this->_enemies[i]->getType() == 'o') {
+              for (int j = 0; j < MAX_BONUS; j++) {
+                if (this->_bonuses[j] == NULL) {
+                  this->_bonuses[j] = 
+                    new Bonus(this->_enemies[i]->getXCoordinate(), this->_enemies[i]->getYCoordinate());
                 }
               }
             }
