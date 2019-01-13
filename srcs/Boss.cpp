@@ -32,16 +32,34 @@ int Boss::move(int turn, char *arena)
   int direction = 0;
   int sign = this->_surface[0]->getDirection();
 
+  if (this->checkBorder(arena)) {
+    for (int i = 0; i < this->_size; i++) {
+      this->_surface[i]->setDirection(-1);
+    }
+  }
+
   for (int i = 0; i < this->_size; i++)
   {
     direction = this->_surface[i]->move(turn, arena); // care when we will remove Enemy move function
+    // if (direction)
+    // {
+    //   this->_surface[i]->resetYCollision();
+    //   direction = 0;
+    // }
+  }
+}
 
-    if (direction)
-    {
-      this->_surface[i]->resetYCollision();
-      direction = 0;
+int Boss::checkBorder(char *arena) {
+  int next_coordinate;
+
+  for (int i = 0; i < this->_size; i++) {
+    next_coordinate = this->_surface[i]->getYCoordinate() * ARENA_WIDTH 
+    + (this->_surface[i]->getXCoordinate() + this->_surface[i]->getDirection());
+    if (arena[next_coordinate % ARENA_SIZE] == '*') {
+      return 1;
     }
   }
+  return 0;
 }
 
 int Boss::getSize() const { return this->_size; }

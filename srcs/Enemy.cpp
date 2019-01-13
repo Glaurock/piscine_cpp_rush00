@@ -24,7 +24,16 @@ void Enemy::setDirection(int sign)
   this->_direction *= sign;
 }
 
-void Enemy::reverseDirection() { this->_direction *= -1; }
+int Enemy::checkBorder(char *arena) { 
+  int next_coordinate = this->_y * ARENA_WIDTH + (this->_x + this->_direction);
+
+  if (arena[next_coordinate % ARENA_SIZE] == '*') {
+    this->_direction *= 1;
+    this->_x += (4 * this->_direction) % ARENA_WIDTH;
+    return 1;
+  }
+  return 0;
+}
 
 int Enemy::move(int turn, char *arena)
 {
@@ -54,7 +63,6 @@ int Enemy::move(int turn, char *arena)
   if (retval)
   {
     this->_x = prevX;
-    this->_y = prevY;
   }
   return retval;
 }
