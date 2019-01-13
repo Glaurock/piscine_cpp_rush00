@@ -30,7 +30,8 @@ int Enemy::move(int turn, char *arena)
 {
   int velocity = this->getVelocity();
   int retval = 0;
-
+  int prevX = this->getXCoordinate();
+  int prevY = this->getYCoordinate();
   if (turn % velocity == 0)
   {
     if ((this->_x + this->_direction) > ARENA_WIDTH - MAX_BACKGROUNDS_SIZE + 1 ||
@@ -48,6 +49,11 @@ int Enemy::move(int turn, char *arena)
     }
     else
       this->_x += this->_direction;
+  }
+  if (retval)
+  {
+    this->_x = prevX;
+    this->_y = prevY;
   }
   return retval;
 }
