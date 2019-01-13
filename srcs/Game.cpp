@@ -104,6 +104,7 @@ void Game::setArena(int pos, char type) { this->_arena[pos % ARENA_SIZE] = type;
 
 void Game::_handleShip(int input)
 {
+  bool shooted = false;
   /* Check enemy missiles collision */
   for (int i = 0; i < MAX_EN_MISSILES; i++)
   {
@@ -128,13 +129,16 @@ void Game::_handleShip(int input)
       if (this->_missiles[i] == NULL)
       {
         this->_missiles[i] = shot;
-        return;
+        shooted = true;
+        break;
       }
     }
     /* If we are here, we cannot fire more missiles */
-    delete shot;
+    if (!shooted)
+      delete shot;
   }
-  this->_ship->move(input, this->_arena);
+  if (!shooted)
+    this->_ship->move(input, this->_arena);
   if (this->_arena[this->_ship->getCoordinate() % ARENA_SIZE] != ' ')
     this->_ship->collided();
   this->_ship->draw(this->_arena);
