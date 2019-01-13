@@ -1,6 +1,6 @@
 #include "Game.hpp"
 
-Game::Game() : _turn(0), _score(0)
+Game::Game() : _turn(0), _score(0), _extra_score(50000)
 {
   std::memset(this->_arena, ' ', ARENA_WIDTH * ARENA_HEIGHT);
   this->_ship = new Ship();
@@ -172,7 +172,6 @@ void Game::_handleBackground()
     Background::bigMountain(this);
   }
 
-
   for (int i = 0; i < MAX_BACKGROUNDS; i++) // Move backgrounds first
     if (this->_backgrounds[i] != NULL)
     {
@@ -338,11 +337,13 @@ int Game::getLives(void) const { return this->_ship->getLives(); }
 
 char *Game::update(int input)
 {
-
   this->_turn++;
   this->_score += 1;
-  if (this->_score > 50000)
+  if (this->_score > _extra_score)
+  {
     this->_ship->extraLife();
+    this->_extra_score *= 2;
+  }
   /* Do some modification on the arena here */
   std::memset(this->_arena, ' ',
               ARENA_WIDTH *
