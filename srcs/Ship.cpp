@@ -13,16 +13,15 @@ Ship::Ship()
 
 Ship::~Ship() {}
 
-
 void Ship::move(int input)
 {
     switch (input)
     {
     case KEY_UP:
-        this->_y -= this->_velocity;
+        this->_y -= this->_velocity / 2;
         break;
     case KEY_DOWN:
-        this->_y += this->_velocity;
+        this->_y += this->_velocity / 2;
         break;
     case KEY_LEFT:
         this->_x -= this->_velocity;

@@ -8,8 +8,7 @@
 
 #include <fstream>
 
-class Ship : public AGameEntity
-{
+class Ship : public AGameEntity {
 
 private:
   Ship(Ship const &src);
@@ -20,6 +19,7 @@ public:
   Ship();
   virtual ~Ship();
 
+  int getLives(void);
   void move(int dir);
   Missile *fireMissile(void);
   void collided(void);

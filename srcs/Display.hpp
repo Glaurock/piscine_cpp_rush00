@@ -1,25 +1,27 @@
 #ifndef DISPLAY_HPP
-# define DISPLAY_HPP
+#define DISPLAY_HPP
 
-# include <ncurses.h>
-# include <iostream>
-# include "ft_retro.hpp"
+#include "ft_retro.hpp"
+#include <iostream>
+#include <ncurses.h>
+#include "Game.hpp"
 
-class Display {
+class Display
+{
 
-private:
+  private:
+    Display(Display const &src);
+    Display &operator=(Display const &src);
 
-    Display(Display const & src);
-    Display & operator=(Display const & src);
-
-public:
-    WINDOW * _win;
-
+  public:
+    WINDOW *_win;
+    WINDOW *_score;
     Display();
     virtual ~Display();
 
-    void draw(char *arena); 
-    int getInput();   
+    void draw(char *arena);
+    void displayScore(Game const &game);
+    int getInput();
 };
 
-# endif // DISPLAY_HPP
+#endif // DISPLAY_HPP

@@ -22,31 +22,28 @@ Game::~Game() {
   // TODO: DELETE THINGS
 }
 
-Enemy * Game::_enemySpawner() {
-  
-  Enemy * enemy;
+Enemy *Game::_enemySpawner() {
 
-  switch (rand() % 4)
-  {
-    case 0:
-      enemy = new Hurler();
-      break;
-    case 1:
-      enemy = new Slicer();
-      break;
-    case 2:
-      enemy = new Boss();
-      break;
-    default:
-      enemy = new Enemy();
-      break;
+  Enemy *enemy;
+
+  switch (rand() % 4) {
+  case 0:
+    enemy = new Hurler();
+    break;
+  case 1:
+    enemy = new Slicer();
+    break;
+  case 2:
+    enemy = new Boss();
+    break;
+  default:
+    enemy = new Enemy();
+    break;
   }
   return enemy;
 }
 
-void Game::setArena(int pos, char type) {
-  this->_arena[pos] = type;
-}
+void Game::setArena(int pos, char type) { this->_arena[pos] = type; }
 
 void Game::_handleShip(int input) {
 
@@ -166,7 +163,7 @@ char *Game::update(int input) {
   this->_handleShip(input);
   this->_handleMissiles();
   this->_handleEnemies();
-  
+
   return this->_arena;
 }
 
