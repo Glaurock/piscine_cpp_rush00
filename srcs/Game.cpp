@@ -51,6 +51,7 @@ Game::~Game()
       delete this->_missilesEnemy[i];
     (this->_missilesEnemy[i] = NULL);
   }
+  delete this->_ship;
   // TODO: DELETE THINGS
 }
 
@@ -263,11 +264,14 @@ void Game::_handleEnemies()
           if (this->_enemies[i]->collided())
           {
             this->_arena[this->_enemies[i]->getCoordinate() % ARENA_SIZE] = 'X';
-            if (this->_enemies[i]->getType() == 'o') {
-              for (int j = 0; j < MAX_BONUS; j++) {
-                if (this->_bonuses[j] == NULL) {
-                  this->_bonuses[j] = 
-                    new Bonus(this->_enemies[i]->getXCoordinate(), this->_enemies[i]->getYCoordinate());
+            if (this->_enemies[i]->getType() == 'o')
+            {
+              for (int j = 0; j < MAX_BONUS; j++)
+              {
+                if (this->_bonuses[j] == NULL)
+                {
+                  this->_bonuses[j] =
+                      new Bonus(this->_enemies[i]->getXCoordinate(), this->_enemies[i]->getYCoordinate());
                 }
               }
             }
