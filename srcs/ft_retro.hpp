@@ -6,11 +6,12 @@
 #define ARENA_SIZE (ARENA_HEIGHT * ARENA_WIDTH)
 
 #define MAX_ENEMIES 10
-#define MAX_MISSILES 4
+#define MAX_MISSILES 10
 #define MAX_BACKGROUNDS 400
+#define MAX_BACKGROUNDS_SIZE 7
 
-#include <iostream>
 #include <cstdlib>
+#include <iostream>
 
 // remove this later
 #include <fstream>
