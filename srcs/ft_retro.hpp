@@ -1,7 +1,7 @@
 #ifndef FT_RETRO_HPP
 #define FT_RETRO_HPP
 
-#define ARENA_WIDTH 150
+#define ARENA_WIDTH 100
 #define ARENA_HEIGHT 30
 #define ARENA_SIZE (ARENA_HEIGHT * ARENA_WIDTH)
 

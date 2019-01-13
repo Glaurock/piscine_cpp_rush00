@@ -15,41 +15,41 @@ int Background::move(int turn, char *arena)
     return 0;
 }
 
+void Background::createRightMountain(Game *game, int size) {
+    for (int i = 1; i < size; i++)
+        game->addNewBackGroundElem(ARENA_WIDTH - i - 1, 0);
+}
+
+void Background::createLeftMountain(Game *game, int size) {
+    for (int i = 1; i < size; i++)
+        game->addNewBackGroundElem(i, 0);
+}
+
 void Background::popMountain(Game *game)
 {
     int size = rand() % MAX_BACKGROUNDS_SIZE + 2;
 
-    for (int i = 1; i < size; i++)
-    {
-        game->addNewBackGroundElem(i, 0);
-    }
+    Background::createLeftMountain(game, size);
     size = rand() % MAX_BACKGROUNDS_SIZE + 2;
-    for (int i = 1; i < size; i++)
-    {
-        game->addNewBackGroundElem(ARENA_WIDTH - i - 1, 0);
-    }
+    Background::createRightMountain(game, size);
 }
 
 void Background::bigMountain(Game *game)
 {
-    for (int i = 1; i < Background::mountainCounter; i++)
-    {
-        game->addNewBackGroundElem(i, 0);
-    }
+    if (Background::mountainCounter == 0)
+        Background::left = rand() % 2;
+    
+    Background::left ? Background::createLeftMountain(game, Background::mountainCounter) :
+    Background::createRightMountain(game, Background::mountainCounter);
+
     if (Background::mountainCounter == MOUNTAIN_MAX_SIZE)
         Background::mountainSide = true;
     if (!Background::mountainSide)
-    {
         Background::mountainCounter++;
-    }
     else
-    {
         Background::mountainCounter--;
-    }
     if (Background::mountainCounter == 0)
-    {
         Background::mountainSide = false;
-    }
 }
 
 int Background::getNextFreeSpace(Background **backgrounds)
@@ -64,3 +64,4 @@ int Background::getNextFreeSpace(Background **backgrounds)
 
 unsigned int Background::mountainCounter = 0;
 bool Background::mountainSide = false;
+bool Background::left = false;

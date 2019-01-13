@@ -13,6 +13,7 @@ private:
   Background &operator=(Background const &src);
   Background();
 
+
 public:
   Background(int, int, int, char);
   virtual ~Background();
@@ -20,10 +21,14 @@ public:
   static int getNextFreeSpace(Background **backgrounds);
   static void popMountain(Game *game);
   static void bigMountain(Game *game);
+  static void createRightMountain(Game *game, int size);
+  static void createLeftMountain(Game *game, int size);
+
   int move(int, char *arena);
 
   static unsigned int mountainCounter;
   static bool mountainSide;
+  static bool left;
 };
 
 #endif // Background_HPP

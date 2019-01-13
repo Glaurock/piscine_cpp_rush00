@@ -12,7 +12,7 @@
 
 NAME = ft_retro
 
-CXX = clang++
+CXX = g++
 #CXX_WARNINGS = -Wall -Werror -Wextra
 CXX_STD = -std=c++98
 CXX_FLAGS = $(CXX_WARNINGS) $(CXX_STD)
