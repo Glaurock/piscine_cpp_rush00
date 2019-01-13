@@ -51,5 +51,5 @@ char AGameEntity::getCollision(char *arena)
 
 void AGameEntity::resetYCollision(void)
 {
-  this->_y -= 1;
+  this->_y += 1;
 }

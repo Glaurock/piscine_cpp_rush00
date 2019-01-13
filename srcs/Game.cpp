@@ -57,14 +57,16 @@ void Game::setArena(int pos, char type) { this->_arena[pos] = type; }
 void Game::_handleShip(int input)
 {
   /* Check enemy missiles collision */
-  for (int i = 0; i < MAX_EN_MISSILES; i++) {
-    if (this->_missilesEnemy[i] != NULL) {
+  for (int i = 0; i < MAX_EN_MISSILES; i++)
+  {
+    if (this->_missilesEnemy[i] != NULL)
+    {
       if (this->_missilesEnemy[i]->getCoordinate() == this->_ship->getCoordinate())
       {
         this->_ship->collided();
         delete this->_missilesEnemy[i];
         this->_missilesEnemy[i] = NULL;
-        return ;
+        return;
       }
     }
   }
@@ -155,7 +157,8 @@ void Game::_handleMissiles()
     }
 }
 
-void Game::_enemyFireMissile(Enemy * enemy) {
+void Game::_enemyFireMissile(Enemy *enemy)
+{
   Missile *shot;
   shot = enemy->fireMissile();
   int i = 0;
@@ -164,7 +167,7 @@ void Game::_enemyFireMissile(Enemy * enemy) {
     if (this->_missilesEnemy[i] == NULL)
     {
       this->_missilesEnemy[i] = shot;
-      return ;
+      return;
     }
   }
   delete shot;
@@ -172,40 +175,43 @@ void Game::_enemyFireMissile(Enemy * enemy) {
 
 void Game::_handleEnemies()
 {
-  for (int i = 0; i < MAX_ENEMIES;
-       i++) // move ennemies: if they hit the player they destroy it. If they
-            // hit a background, push them and check again?
+  char c;
+
+  for (int i = 0; i < MAX_ENEMIES; i++)
     if (this->_enemies[i] != NULL)
     {
       this->_enemies[i]->move(this->_turn, this->_arena);
-      // fire if boss
-      if (this->_enemies[i]->getType() == 'T' && this->_turn % 10 == 0) {
+      if (this->_enemies[i]->getType() == 'T' && this->_turn % 10 == 0)
         this->_enemyFireMissile(this->_enemies[i]);
-      }
-
       if (this->_enemies[i]->getCoordinate() > (ARENA_HEIGHT * ARENA_WIDTH) - 1)
       {
         delete this->_enemies[i];
         this->_enemies[i] = this->_enemySpawner();
       }
-      if (this->_arena[this->_enemies[i]->getCoordinate()] == this->_ship->getType())
-        this->_ship->collided();
-      else if (this->_arena[this->_enemies[i]->getCoordinate()] == Missile::_type)
+      if ((c = this->_enemies[i]->getCollision(this->_arena)))
       {
-        for (int x = 0; x < MAX_MISSILES; x++)
-          if (this->_missiles[x] != NULL)
-            if (this->_missiles[x]->getCoordinate() == this->_enemies[i]->getCoordinate())
-            {
-              delete this->_missiles[x];
-              this->_missiles[x] = NULL;
-              // break;
-            }
-        if (this->_enemies[i]->collided())
+        switch (c)
         {
-          this->_arena[this->_enemies[i]->getCoordinate()] = 'X';
-          delete this->_enemies[i];
-          this->_enemies[i] = NULL;
-          // this->_enemies[i] = new Enemy(); // get score
+        case 'S':
+          this->_ship->collided();
+        case '|':
+        {
+          for (int x = 0; x < MAX_MISSILES; x++)
+            if (this->_missiles[x] != NULL)
+              if (this->_missiles[x]->getCoordinate() == this->_enemies[i]->getCoordinate())
+              {
+                delete this->_missiles[x];
+                this->_missiles[x] = NULL;
+                // break;
+              }
+          if (this->_enemies[i]->collided())
+          {
+            this->_arena[this->_enemies[i]->getCoordinate()] = 'X';
+            delete this->_enemies[i];
+            this->_enemies[i] = NULL;
+            // this->_enemies[i] = new Enemy(); // get score
+          }
+        }
         }
       }
       else

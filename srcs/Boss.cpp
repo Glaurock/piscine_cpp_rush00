@@ -1,6 +1,6 @@
 #include "Boss.hpp"
 
-Boss::Boss()
+Boss::Boss() : _hp(100)
 {
   this->_velocity = 2;
   this->_type = 'o';
@@ -39,21 +39,9 @@ int Boss::move(int turn, char *arena)
     if (direction)
     {
       this->_surface[i]->resetYCollision();
-      // sign *= -1;
-      // for (int b = 0; b < this->_size; b++)
-      // {
-      //   if (this->_surface[b]->getDirection() != sign)
-      //   {
-      //     this->_surface[b]->setDirection(-1);
-      //     // if (b != i)
-      //     // this->_surface[b]->move(turn, arena);
-      //     this->_surface[b]->move(turn, arena);
-      //   }
-      // }
       direction = 0;
     }
   }
-  // return 979743;
 }
 
 int Boss::getSize() const { return this->_size; }
@@ -64,13 +52,30 @@ char Boss::getCollision(char *arena)
 
   for (int i = 0; i < this->_size; i++)
   {
-    if (arena[(this->getCoordinate()) % ARENA_SIZE] == 'S')
+    if (arena[(this->_surface[i]->getCoordinate()) % ARENA_SIZE] == 'S')
       return 'S';
-    if (arena[(this->getCoordinate()) % ARENA_SIZE] != ' ')
+    if (arena[(this->_surface[i]->getCoordinate()) % ARENA_SIZE] != ' ')
       if (worst_collision != '|')
-        worst_collision = arena[(this->getCoordinate()) % ARENA_SIZE];
+        worst_collision = arena[(this->_surface[i]->getCoordinate()) % ARENA_SIZE];
   }
+  if (worst_collision == '*' || worst_collision == 'Y')
+    return 0;
   return worst_collision;
+}
+
+bool Boss::collided(void)
+{
+  this->_hp -= 1;
+  if (this->_hp == 0)
+  {
+    for (int i = 0; i < this->_size; i++)
+    {
+      delete this->_surface[i];
+      this->_surface[i] = NULL;
+      return true;
+    }
+  }
+  return false;
 }
 
 int Boss::boss1[] = {41 + ARENA_WIDTH, 42 + ARENA_WIDTH,

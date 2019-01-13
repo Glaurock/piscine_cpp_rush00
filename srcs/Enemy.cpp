@@ -1,7 +1,7 @@
 #include "Enemy.hpp"
 
-Enemy::Enemy(int x, int y, int velocity, char type, int hp)
-    : AGameEntity(x, y, velocity, type), _hp(hp), _direction(1)
+Enemy::Enemy(int x, int y, int velocity, char type)
+    : AGameEntity(x, y, velocity, type), _direction(1)
 {
   return;
 }
@@ -61,13 +61,10 @@ int Enemy::move(int turn) // safest method for BG check
 
 bool Enemy::collided(void)
 {
-  this->_hp -= 1;
-  if (this->_hp == 0)
-    return true; // destroys enemy
-  return false;
+  return true;
 }
 
-Missile * Enemy::fireMissile(void) {
-
-  return new Missile(this->getXCoordinate(), this->getYCoordinate() + 1, 1, '|', 1);
+Missile *Enemy::fireMissile(void)
+{
+  return new Missile(this->getXCoordinate(), this->getYCoordinate() + 1, 1, 'Y', 1);
 }

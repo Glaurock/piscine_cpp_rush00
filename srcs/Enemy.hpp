@@ -16,12 +16,12 @@ private:
   int _hp;
 
 public:
-  Enemy(int x = 10, int y = 3, int velocity = 2, char type = 'T', int hp = 1);
+  Enemy(int x = 10, int y = 3, int velocity = 2, char type = 'T');
   virtual ~Enemy();
 
   virtual int move(int, char *arena); // can be overidden for more subtle patterns
   virtual int move(int);
-  bool collided(void);
+  virtual bool collided(void);
   Missile *fireMissile(void);
   int getDirection(void);
   void setDirection(int sign);
