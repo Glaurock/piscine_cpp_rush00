@@ -7,6 +7,8 @@ Slicer::Slicer(Slicer const &src) {}
 
 Slicer::~Slicer() {}
 
+void Slicer::draw(Game * game) {}
+
 void Slicer::move(int turn) {
   int velocity = this->getVelocity();
 

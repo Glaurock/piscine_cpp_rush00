@@ -7,12 +7,9 @@
 #include "Missile.hpp"
 #include "Ship.hpp"
 #include "Slicer.hpp"
+#include "Boss.hpp"
 
 #include <cstring>
-
-// remove this later
-#include <fstream>
-#include <string>
 
 class Background;
 
@@ -43,6 +40,7 @@ public:
 
   char *update(int input);
   void addNewBackGroundElem(int, int);
+  void setArena(int, char);
 };
 
 #endif // GAME_HPP
