@@ -102,7 +102,8 @@ Enemy *Game::_enemySpawner()
 
 void Game::setArena(int pos, char type) { this->_arena[pos % ARENA_SIZE] = type; }
 
-void Game::_shipFireMissile(bool * shooted) {
+void Game::_shipFireMissile(bool *shooted)
+{
   Missile *shot;
   shot = this->_ship->fireMissile();
   for (int i = 0; i < MAX_MISSILES; i++)
@@ -118,7 +119,6 @@ void Game::_shipFireMissile(bool * shooted) {
   if (!(*shooted))
     delete shot;
 }
-
 
 void Game::_handleShip(int input)
 {
@@ -310,11 +310,13 @@ void Game::_handleBonus()
     if (bonus != NULL)
     {
       bonus->move(this->_turn, this->_arena);
-      if (bonus->getYCoordinate() == -1) {
+      if (bonus->getYCoordinate() == -1)
+      {
         delete this->_bonuses[i];
         this->_bonuses[i] = NULL;
       }
-      if (bonus->getCollision(this->_arena) == 'S') {
+      if (bonus->getCollision(this->_arena) == 'S')
+      {
         delete this->_bonuses[i];
         this->_bonuses[i] = NULL;
         this->_ship->gainBonus();
@@ -333,6 +335,8 @@ char *Game::update(int input)
 
   this->_turn++;
   this->_score += 1;
+  if (this->_score > 50000)
+    this->_ship->extraLife();
   /* Do some modification on the arena here */
   std::memset(this->_arena, ' ',
               ARENA_WIDTH *

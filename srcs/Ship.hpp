@@ -27,6 +27,7 @@ public:
   void collided(void);
   void gainBonus();
   bool getWeapon() const;
+  void extraLife();
 };
 
 #endif // SHIP_HPP

@@ -13,6 +13,11 @@ Ship::Ship()
 
 Ship::~Ship() {}
 
+void Ship::extraLife(void)
+{
+    this->_life += 1;
+}
+
 int Ship::move(int input, char *arena)
 {
     switch (input)
@@ -62,14 +67,15 @@ void Ship::collided(void)
     this->_y = ARENA_HEIGHT - 2;
 }
 
-void Ship::gainBonus(void) {
+void Ship::gainBonus(void)
+{
     // this->_lives++;
     this->_hasWeapon = true;
 }
 
-bool Ship::getWeapon() const {
+bool Ship::getWeapon() const
+{
     return this->_hasWeapon;
 }
-
 
 int Ship::getLives(void) const { return this->_lives; }
