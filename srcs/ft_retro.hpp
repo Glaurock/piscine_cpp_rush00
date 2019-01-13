@@ -7,8 +7,10 @@
 
 #define MAX_ENEMIES 10
 #define MAX_MISSILES 10
-#define MAX_BACKGROUNDS 400
+#define MAX_BACKGROUNDS 600
 #define MAX_BACKGROUNDS_SIZE 7
+
+#define MOUNTAIN_MAX_SIZE 20
 
 #include <cstdlib>
 #include <iostream>

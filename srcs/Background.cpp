@@ -29,6 +29,28 @@ void Background::popMountain(Game *game)
     }
 }
 
+void Background::bigMountain(Game *game)
+{
+    for (int i = 1; i < Background::mountainCounter; i++)
+    {
+        game->addNewBackGroundElem(i, 0);
+    }
+    if (Background::mountainCounter == MOUNTAIN_MAX_SIZE)
+        Background::mountainSide = true;
+    if (!Background::mountainSide)
+    {
+        Background::mountainCounter++;
+    }
+    else
+    {
+        Background::mountainCounter--;
+    }
+    if (Background::mountainCounter == 0)
+    {
+        Background::mountainSide = false;
+    }
+}
+
 int Background::getNextFreeSpace(Background **backgrounds)
 {
     for (int i = 0; i < MAX_BACKGROUNDS; i++)
@@ -38,3 +60,6 @@ int Background::getNextFreeSpace(Background **backgrounds)
     }
     return -1;
 }
+
+unsigned int Background::mountainCounter = 0;
+bool Background::mountainSide = false;
