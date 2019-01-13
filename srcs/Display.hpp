@@ -22,7 +22,7 @@ public:
 
   void game_over(void);
   void draw(char *arena);
-  void displayScore(Game const &game);
+  void displayScore(Game const &game, int timer);
   int getInput();
 };
 

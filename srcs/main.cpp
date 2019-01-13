@@ -2,6 +2,7 @@
 #include "Game.hpp"
 
 #include <unistd.h> /*sleep*/
+#include <time.h>
 
 int main()
 {
@@ -10,6 +11,9 @@ int main()
     char *arena;
     int input;
     int speed = 30000;
+    clock_t t;
+    t = clock();
+    int timer;
     while (1)
     {
         input = display.getInput();
@@ -35,7 +39,8 @@ int main()
             }
         }
         display.draw(arena);
-        display.displayScore(*game);
+        timer = clock() - t;
+        display.displayScore(*game, timer);
         usleep(speed);
         if (speed > 25000)
             speed -= 10;
