@@ -62,4 +62,8 @@ void Ship::collided(void)
     this->_y = ARENA_HEIGHT - 2;
 }
 
+void Ship::gainBonus(void) {
+    this->_lives++;
+}
+
 int Ship::getLives(void) const { return this->_lives; }
