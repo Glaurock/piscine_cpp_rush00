@@ -8,6 +8,7 @@
 #include "Missile.hpp"
 #include "Ship.hpp"
 #include "Slicer.hpp"
+#include "Bonus.hpp"
 
 #include <cstring>
 
@@ -23,6 +24,7 @@ private:
   Missile *_missilesEnemy[MAX_EN_MISSILES];
   Enemy *_enemies[MAX_ENEMIES];
   Background *_backgrounds[MAX_BACKGROUNDS];
+  Bonus *_bonuses[MAX_BONUS];
   unsigned int _turn;
   unsigned int _score;
 
@@ -30,6 +32,7 @@ private:
   void _handleBackground();
   void _handleMissiles();
   void _handleEnemies();
+  void _handleBonus();
   void _enemyFireMissile(Enemy * enemy);
   Enemy *_enemySpawner();
   void _spawn();
