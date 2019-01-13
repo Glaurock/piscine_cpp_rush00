@@ -25,11 +25,11 @@ public:
   Missile *fireMissile(void);
   int getDirection(void);
   void setDirection(int sign);
-<<<<<<< HEAD
+  void setX(int x);
+  void setY(int y);
+  void bounce();
   virtual bool checkOutOfBounds(void);
-=======
   virtual int checkBorder(char *arena);
->>>>>>> 3f3872789c93d19c8463ae9a2568a8f7790e1586
   // virtual void draw(char (& arena)[ARENA_SIZE]);
 };
 

@@ -24,12 +24,31 @@ void Enemy::setDirection(int sign)
   this->_direction *= sign;
 }
 
-int Enemy::checkBorder(char *arena) { 
+void Enemy::setX(int x)
+{
+  this->_x = x;
+}
+
+void Enemy::setY(int y)
+{
+  this->_y = y;
+}
+
+void Enemy::bounce()
+{
+  this->_x += (2 * this->_direction) % ARENA_WIDTH;
+  // this->_y++;
+}
+
+int Enemy::checkBorder(char *arena)
+{
   int next_coordinate = this->_y * ARENA_WIDTH + (this->_x + this->_direction);
 
-  if (arena[next_coordinate % ARENA_SIZE] == '*') {
-    this->_direction *= 1;
-    this->_x += (4 * this->_direction) % ARENA_WIDTH;
+  if ((arena[next_coordinate % ARENA_SIZE] == '*') || ((this->_x + this->_direction) > ARENA_WIDTH - MAX_BACKGROUNDS_SIZE + 1 ||
+                                                       (this->_x + this->_direction) < MAX_BACKGROUNDS_SIZE + 1))
+  {
+    this->_direction *= -1;
+    this->bounce();
     return 1;
   }
   return 0;
@@ -37,34 +56,11 @@ int Enemy::checkBorder(char *arena) {
 
 int Enemy::move(int turn, char *arena)
 {
-  int velocity = this->getVelocity();
-  int retval = 0;
-  int prevX = this->getXCoordinate();
-  int prevY = this->getYCoordinate();
-
-  if (turn % velocity == 0)
+  if (turn % this->_velocity == 0)
   {
-    if ((this->_x + this->_direction) > ARENA_WIDTH - MAX_BACKGROUNDS_SIZE + 1 ||
-        (this->_x + this->_direction) < MAX_BACKGROUNDS_SIZE + 1) //// a border of the window would be reached
-    {
-      this->_y += 1;
-      this->_direction *= -1; // edge was reached, reverse direction
-      retval = 1;
-    }
-    else if (arena[(this->getCoordinate()) % ARENA_SIZE] != ' ' && arena[(this->getCoordinate()) % ARENA_SIZE] != '|')
-    {
-      this->_direction *= -1;
-      this->_x += this->_direction;
-      retval = 1;
-    }
-    else
-      this->_x += this->_direction;
+    this->_x += this->_direction;
   }
-  if (retval)
-  {
-    this->_x = prevX;
-  }
-  return retval;
+  return 0;
 }
 
 int Enemy::move(int turn) // safest method for BG check

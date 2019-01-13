@@ -29,49 +29,32 @@ void Boss::draw(char (&arena)[ARENA_SIZE])
 
 int Boss::move(int turn, char *arena)
 {
-  int direction = 0;
-  int sign = this->_surface[0]->getDirection();
-  int retval = 0;
   if (this->checkBorder(arena))
   {
     for (int i = 0; i < this->_size; i++)
     {
       this->_surface[i]->setDirection(-1);
+      this->_surface[i]->bounce();
     }
   }
-
   for (int i = 0; i < this->_size; i++)
   {
-    if ((this->_surface[i]->getXCoordinate() + this->_surface[i]->getDirection()) > ARENA_WIDTH - MAX_BACKGROUNDS_SIZE + 1 ||
-        (this->_surface[i]->getXCoordinate() + this->_surface[i]->getDirection()) < MAX_BACKGROUNDS_SIZE + 1) //// a border of the window would be reached
-    {
-      this->_surface[i]->_y += 1;
-      this->_surface[i]->setDirection(-1); // edge was reached, reverse direction
-      retval = 1;
-    }
-    else if (this->_surface[i]->getCollision(arena))
-    {
-      this->_surface[i]->getCollision(arena);
-      this->_surface[i]->setDirection(-1);
-      this->_surface[i]->_x += this->_surface[i]->_direction;
-      retval = 1;
-    } // care when we will remove Enemy move function
-    if (retval)
-    {
-      this->_surface[i]->resetYCollision();
-      retval = 0;
-    }
+    this->_surface[i]->move(turn, arena);
   }
 }
 
 int Boss::checkBorder(char *arena)
 {
   int next_coordinate;
+  int x;
+  int dir;
 
   for (int i = 0; i < this->_size; i++)
   {
-    next_coordinate = this->_surface[i]->getYCoordinate() * ARENA_WIDTH + (this->_surface[i]->getXCoordinate() + this->_surface[i]->getDirection());
-    if (arena[next_coordinate % ARENA_SIZE] == '*')
+    x = this->_surface[i]->getXCoordinate();
+    dir = this->_surface[i]->getDirection() * 4;
+    next_coordinate = this->_surface[i]->getYCoordinate() * ARENA_WIDTH + (x + dir);
+    if (arena[next_coordinate % ARENA_SIZE] == '*' || (x + dir == ARENA_WIDTH - MAX_BACKGROUNDS_SIZE))
     {
       return 1;
     }

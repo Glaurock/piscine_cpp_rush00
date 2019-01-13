@@ -17,10 +17,10 @@ Game::Game() : _turn(0), _score(0)
   for (int i = 0; i < MAX_EN_MISSILES; i++)
     (this->_missilesEnemy[i] = NULL);
 
-  // this->_enemies[0] = new Hurler();
-  // this->_enemies[1] = new Slicer();
-  this->_enemies[1] = new Enemy();
-  this->_enemies[2] = new Boss();
+  this->_enemies[0] = new Hurler();
+  this->_enemies[1] = new Slicer();
+  // this->_enemies[1] = new Enemy();
+  // this->_enemies[2] = new Boss();
   // this->_enemies[3] = new Enemy();
   // this->_enemies[4] = new Enemy();
   // this->_enemies[5] = new Enemy();
