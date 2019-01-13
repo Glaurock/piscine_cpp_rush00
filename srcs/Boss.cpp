@@ -1,6 +1,6 @@
 #include "Boss.hpp"
 
-Boss::Boss() : _hp(100)
+Boss::Boss() : _hp(BOSS_HP)
 {
   this->_velocity = 2;
   this->_type = 'o';

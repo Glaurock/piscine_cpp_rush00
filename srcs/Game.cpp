@@ -17,13 +17,7 @@ Game::Game() : _turn(0), _score(0)
   for (int i = 0; i < MAX_EN_MISSILES; i++)
     (this->_missilesEnemy[i] = NULL);
 
-  this->_enemies[0] = new Hurler();
-  this->_enemies[1] = new Slicer();
-  // this->_enemies[1] = new Enemy();
-  // this->_enemies[2] = new Boss();
-  // this->_enemies[3] = new Enemy();
-  // this->_enemies[4] = new Enemy();
-  // this->_enemies[5] = new Enemy();
+  this->_enemies[0] = this->_enemySpawner();
 }
 
 Game::Game(Game const &src) {}
@@ -33,24 +27,41 @@ Game::~Game()
   // TODO: DELETE THINGS
 }
 
+void Game::_spawn() { 
+  if (this->_turn % SPAWN_TURN == 0) {
+    for (int i = 0; i < MAX_ENEMIES; i++) {
+      if (this->_enemies[i] == NULL) {
+        this->_enemies[i] = this->_enemySpawner();
+        break ;
+      }
+    }
+  }
+  if (this->_turn % BOSS_SPAWN == 0) {
+     for (int i = 0; i < MAX_ENEMIES; i++) {
+      if (this->_enemies[i] == NULL) {
+        this->_enemies[i] = new Boss();
+        break ;
+      }
+    }
+  }
+}
+
 Enemy *Game::_enemySpawner()
 {
-
   Enemy *enemy;
+  int x = rand() % (ARENA_WIDTH - 20) + 20;
+  int y = rand() % 10 + 2;  
 
-  switch (rand() % 4)
+  switch (rand() % 3)
   {
   case 0:
-    enemy = new Hurler();
+    enemy = new Hurler(x, y);
     break;
   case 1:
-    enemy = new Slicer();
-    break;
-  case 2:
-    enemy = new Boss();
+    enemy = new Slicer(x, y);
     break;
   default:
-    enemy = new Enemy();
+    enemy = new Enemy(x, y);
     break;
   }
   return enemy;
@@ -76,7 +87,7 @@ void Game::_handleShip(int input)
   }
 
   if (input == 32)
-  { // MACRO FOR SPACE?
+  {
     Missile *shot;
     shot = this->_ship->fireMissile();
     for (int i = 0; i < MAX_MISSILES; i++)
@@ -248,6 +259,7 @@ char *Game::update(int input)
               ARENA_WIDTH *
                   ARENA_HEIGHT); // Clearing last frame info completely
 
+  this->_spawn();
   this->_handleBackground();
   this->_handleShip(input);
   this->_handleMissiles();

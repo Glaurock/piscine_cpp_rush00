@@ -1,7 +1,7 @@
 #include "Slicer.hpp"
 
 // Slicer::Slicer() {}
-Slicer::Slicer(int x, int y, int velocity, char type) : Enemy(10, 10, 2, 'K') {}
+Slicer::Slicer(int x, int y, int velocity, char type) : Enemy(x, y, velocity, type) {}
 
 Slicer::Slicer(Slicer const &src) {}
 

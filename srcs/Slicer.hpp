@@ -13,7 +13,7 @@ private:
   Slicer &operator=(Slicer const &src);
 
 public:
-  Slicer(int x = 1, int y = 1, int velocity = 1, char type = 'K');
+  Slicer(int x = 10, int y = 10, int velocity = 2, char type = 'K');
   virtual ~Slicer();
   virtual int move(int, char *arena); // can be overidden for more subtle patterns
   virtual void draw(Game *);

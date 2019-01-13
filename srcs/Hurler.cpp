@@ -1,7 +1,7 @@
 #include "Hurler.hpp"
 
 // Hurler::Hurler() {}
-Hurler::Hurler(int x, int y, int velocity, char type) : Enemy(10, 10, 2, 'H') {}
+Hurler::Hurler(int x, int y, int velocity, char type) : Enemy(x, y, velocity, type) {}
 
 Hurler::Hurler(Hurler const &src) {}
 

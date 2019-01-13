@@ -32,6 +32,7 @@ private:
   void _handleEnemies();
   void _enemyFireMissile(Enemy * enemy);
   Enemy *_enemySpawner();
+  void _spawn();
 
   Game(Game const &src);
   Game &operator=(Game const &src);

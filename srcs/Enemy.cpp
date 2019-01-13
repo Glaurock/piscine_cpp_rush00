@@ -37,7 +37,6 @@ void Enemy::setY(int y)
 void Enemy::bounce()
 {
   this->_x += (2 * this->_direction) % ARENA_WIDTH;
-  // this->_y++;
 }
 
 int Enemy::checkBorder(char *arena)
