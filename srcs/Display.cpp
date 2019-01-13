@@ -31,9 +31,9 @@ int getColor(char c)
     case ' ':
         return 0;
     case 'T':
-        return 1;
+        return 4;
     case 'Y':
-        return 1;
+        return 4;
     case '|':
         return 3;
     case 'H':

@@ -176,6 +176,7 @@ void Game::_enemyFireMissile(Enemy *enemy)
 void Game::_handleEnemies()
 {
   char c;
+  int destroyed = 0;
 
   for (int i = 0; i < MAX_ENEMIES; i++)
     if (this->_enemies[i] != NULL)
@@ -183,8 +184,10 @@ void Game::_handleEnemies()
       this->_enemies[i]->move(this->_turn, this->_arena);
       if (this->_enemies[i]->getType() == 'T' && this->_turn % 10 == 0)
         this->_enemyFireMissile(this->_enemies[i]);
-      if (this->_enemies[i]->getCoordinate() > (ARENA_HEIGHT * ARENA_WIDTH) - 1)
+      if (this->_enemies[i]->checkOutOfBounds())
       {
+        while (!destroyed)
+          destroyed = this->_enemies[i]->collided();
         delete this->_enemies[i];
         this->_enemies[i] = this->_enemySpawner();
       }

@@ -40,7 +40,7 @@ int Enemy::move(int turn, char *arena)
       this->_direction *= -1; // edge was reached, reverse direction
       retval = 1;
     }
-    else if (arena[(this->getXCoordinate()) % ARENA_SIZE] != ' ' && arena[(this->getXCoordinate()) % ARENA_SIZE] != '|')
+    else if (arena[(this->getCoordinate()) % ARENA_SIZE] != ' ' && arena[(this->getCoordinate()) % ARENA_SIZE] != '|')
     {
       this->_direction *= -1;
       this->_x += this->_direction;
@@ -52,7 +52,6 @@ int Enemy::move(int turn, char *arena)
   if (retval)
   {
     this->_x = prevX;
-    this->_y = prevY;
   }
   return retval;
 }
@@ -74,4 +73,11 @@ bool Enemy::collided(void)
 Missile *Enemy::fireMissile(void)
 {
   return new Missile(this->getXCoordinate(), this->getYCoordinate() + 1, 1, 'Y', 1);
+}
+
+bool Enemy::checkOutOfBounds(void)
+{
+  if (this->getCoordinate() > (ARENA_HEIGHT * ARENA_WIDTH) - 1)
+    return true;
+  return false;
 }

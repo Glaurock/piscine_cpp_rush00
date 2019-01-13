@@ -36,12 +36,12 @@ int Boss::move(int turn, char *arena)
   {
     direction = this->_surface[i]->move(turn, arena); // care when we will remove Enemy move function
 
-    if (direction)
-    {
-      this->_surface[i]->resetYCollision();
-      direction = 0;
-    }
+    // if (direction)
+    // {
+    //   this->_surface[i]->resetYCollision();
+    //   direction = 0;
   }
+  // }
 }
 
 int Boss::getSize() const { return this->_size; }
@@ -58,7 +58,7 @@ char Boss::getCollision(char *arena)
       if (worst_collision != '|')
         worst_collision = arena[(this->_surface[i]->getCoordinate()) % ARENA_SIZE];
   }
-  if (worst_collision == '*' || worst_collision == 'Y')
+  if (worst_collision == '*' || worst_collision == 'Y' || worst_collision == 'o')
     return 0;
   return worst_collision;
 }
@@ -74,6 +74,16 @@ bool Boss::collided(void)
       this->_surface[i] = NULL;
       return true;
     }
+  }
+  return false;
+}
+
+bool Boss::checkOutOfBounds(void)
+{
+  for (int i = 0; i < this->_size; i++)
+  {
+    if (this->_surface[i]->getCoordinate() > (ARENA_HEIGHT * ARENA_WIDTH) - 1)
+      return true;
   }
   return false;
 }

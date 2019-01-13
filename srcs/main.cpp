@@ -9,7 +9,7 @@ int main()
     Game game;
     char *arena;
     int input;
-    int speed = 30000;
+    int speed = 50000;
     while (1)
     {
         input = display.getInput();
