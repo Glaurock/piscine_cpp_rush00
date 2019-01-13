@@ -32,8 +32,10 @@ int Boss::move(int turn, char *arena)
   int direction = 0;
   int sign = this->_surface[0]->getDirection();
 
-  if (this->checkBorder(arena)) {
-    for (int i = 0; i < this->_size; i++) {
+  if (this->checkBorder(arena))
+  {
+    for (int i = 0; i < this->_size; i++)
+    {
       this->_surface[i]->setDirection(-1);
       this->_surface[i]->bounce();
     }
@@ -50,7 +52,8 @@ int Boss::move(int turn, char *arena)
   }
 }
 
-int Boss::checkBorder(char *arena) {
+int Boss::checkBorder(char *arena)
+{
   int next_coordinate;
   int x;
   int dir;
@@ -80,7 +83,7 @@ char Boss::getCollision(char *arena)
       if (worst_collision != '|')
         worst_collision = arena[(this->_surface[i]->getCoordinate()) % ARENA_SIZE];
   }
-  if (worst_collision == '*' || worst_collision == 'Y')
+  if (worst_collision != '|')
     return 0;
   return worst_collision;
 }
@@ -96,6 +99,16 @@ bool Boss::collided(void)
       this->_surface[i] = NULL;
       return true;
     }
+  }
+  return false;
+}
+
+bool Boss::checkOutOfBounds(void)
+{
+  for (int i = 0; i < this->_size; i++)
+  {
+    if (this->_surface[i]->getCoordinate() > (ARENA_HEIGHT * ARENA_WIDTH) - 1)
+      return true;
   }
   return false;
 }

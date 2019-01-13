@@ -27,6 +27,7 @@ public:
   void setDirection(int sign);
   void setX(int x);
   void bounce();
+  virtual bool checkOutOfBounds(void);
   virtual int checkBorder(char *arena);
   // virtual void draw(char (& arena)[ARENA_SIZE]);
 };
