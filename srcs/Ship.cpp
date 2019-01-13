@@ -63,6 +63,7 @@ void Ship::collided(void)
     //     ;           // display game over, etc
     this->_x = ARENA_WIDTH / 2; // respawn at start
     this->_y = ARENA_HEIGHT - 2;
+    this->_hasWeapon = false;
 }
 
 void Ship::gainBonus(void) {
