@@ -15,6 +15,7 @@ Game::Game() : _turn(0), _score(0)
     (this->_missiles[i] = NULL);
   this->_enemies[0] = new Hurler();
   this->_enemies[1] = new Slicer();
+  this->_enemies[2] = new Boss();
 }
 
 Game::Game(Game const &src) {}

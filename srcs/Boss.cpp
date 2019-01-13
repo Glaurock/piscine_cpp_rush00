@@ -39,4 +39,7 @@ void Boss::move(int turn, char *arena)
 
 int Boss::getSize() const { return this->_size; }
 
-int Boss::boss1[] = {141, 142, 241, 242, 340, 343};
+int Boss::boss1[] = {41 + ARENA_WIDTH, 42 + ARENA_WIDTH, 
+41 + ( 2 * ARENA_WIDTH), 
+42 + (2 * ARENA_WIDTH), 
+40 + (3 * ARENA_WIDTH), 43 + (3 * ARENA_WIDTH)};
