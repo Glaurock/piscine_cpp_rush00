@@ -295,12 +295,19 @@ void Game::_handleEnemies()
 
 void Game::_handleBonus()
 {
+  Bonus *bonus;
+
   for (int i = 0; i < MAX_BONUS; i++)
   {
-    if (this->_bonuses[i] != NULL)
+    bonus = this->_bonuses[i];
+    if (bonus != NULL)
     {
-      this->_bonuses[i]->move(this->_turn, this->_arena);
-      this->_bonuses[i]->draw(this->_arena);
+      bonus->move(this->_turn, this->_arena);
+      if (bonus->getYCoordinate() == -1) {
+        delete this->_bonuses[i];
+        this->_bonuses[i] = NULL;
+      }
+      bonus->draw(this->_arena);
     }
   }
 }

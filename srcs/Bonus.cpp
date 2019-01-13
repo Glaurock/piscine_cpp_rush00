@@ -15,6 +15,10 @@ int Bonus::move(int turn, char *arena)
     {
         this->_y++;
     }
+    if (this->_y >= ARENA_HEIGHT) {
+        this->_y = -1;
+        this->_x = -1;
+    }
     if (arena[0])
         return 0;
     return 0;
