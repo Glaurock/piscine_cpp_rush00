@@ -24,6 +24,7 @@ public:
   int move(int dir, char *arena);
   Missile *fireMissile(void);
   void collided(void);
+  void gainBonus();
 };
 
 #endif // SHIP_HPP

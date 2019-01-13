@@ -307,6 +307,11 @@ void Game::_handleBonus()
         delete this->_bonuses[i];
         this->_bonuses[i] = NULL;
       }
+      if (bonus->getCollision(this->_arena) == 'S') {
+        delete this->_bonuses[i];
+        this->_bonuses[i] = NULL;
+        this->_ship->gainBonus();
+      }
       bonus->draw(this->_arena);
     }
   }
