@@ -15,6 +15,7 @@ private:
   Ship(Ship const &src);
   Ship &operator=(Ship const &src);
   int _lives;
+  bool _hasWeapon;
 
 public:
   Ship();
@@ -25,6 +26,7 @@ public:
   Missile *fireMissile(void);
   void collided(void);
   void gainBonus();
+  bool getWeapon() const;
 };
 
 #endif // SHIP_HPP

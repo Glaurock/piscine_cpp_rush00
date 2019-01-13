@@ -57,7 +57,13 @@ void Ship::collided(void)
 }
 
 void Ship::gainBonus(void) {
-    this->_lives++;
+    // this->_lives++;
+    this->_hasWeapon = true;
 }
+
+bool Ship::getWeapon() const {
+    return this->_hasWeapon;
+}
+
 
 int Ship::getLives(void) const { return this->_lives; }

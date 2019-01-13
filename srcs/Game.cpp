@@ -102,6 +102,24 @@ Enemy *Game::_enemySpawner()
 
 void Game::setArena(int pos, char type) { this->_arena[pos % ARENA_SIZE] = type; }
 
+void Game::_shipFireMissile(bool * shooted) {
+  Missile *shot;
+  shot = this->_ship->fireMissile();
+  for (int i = 0; i < MAX_MISSILES; i++)
+  {
+    if (this->_missiles[i] == NULL)
+    {
+      this->_missiles[i] = shot;
+      *shooted = true;
+      break;
+    }
+  }
+  /* If we are here, we cannot fire more missiles */
+  if (!(*shooted))
+    delete shot;
+}
+
+
 void Game::_handleShip(int input)
 {
   bool shooted = false;
@@ -122,20 +140,8 @@ void Game::_handleShip(int input)
 
   if (input == 32)
   {
-    Missile *shot;
-    shot = this->_ship->fireMissile();
-    for (int i = 0; i < MAX_MISSILES; i++)
-    {
-      if (this->_missiles[i] == NULL)
-      {
-        this->_missiles[i] = shot;
-        shooted = true;
-        break;
-      }
-    }
-    /* If we are here, we cannot fire more missiles */
-    if (!shooted)
-      delete shot;
+    this->_shipFireMissile(&shooted);
+    // if (this->_ship->getWeapon())
   }
   if (!shooted)
     this->_ship->move(input, this->_arena);
