@@ -3,9 +3,6 @@
 
 # include "Enemy.hpp"
 # include "AGameEntity.hpp"
-# include "Game.hpp"
-
-class Game;
 
 class Boss : public Enemy {
 
@@ -22,7 +19,7 @@ public:
 
     int getSize() const;
 
-    void draw(Game * game);
+    void draw(char (& arena)[ARENA_SIZE]);
     virtual void move(int);    
 
     static int boss1[6];  

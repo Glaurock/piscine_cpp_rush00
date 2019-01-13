@@ -3,8 +3,6 @@
 
 #include "AGameEntity.hpp"
 
-class Game;
-
 class Enemy : public AGameEntity {
 
 protected:
@@ -22,7 +20,7 @@ public:
   virtual void move(int); // can be overidden for more subtle patterns
   virtual void move(char *arena);
   bool collided(void);
-  virtual void draw(Game *); // ONLY IMPLEMENTED IN "BOSS" FOR NOW
+  // virtual void draw(char (& arena)[ARENA_SIZE]);
 };
 
 #endif // ENEMY_HPP

@@ -38,7 +38,7 @@ Enemy * Game::_enemySpawner() {
       enemy = new Boss();
       break;
     default:
-      enemy = new Enemy();
+      enemy = new Boss();
       break;
   }
   return enemy;
@@ -65,7 +65,7 @@ void Game::_handleShip(int input) {
   this->_ship->move(input);
   if (this->_arena[this->_ship->getCoordinate()] != ' ')
     this->_ship->collided();
-  this->_arena[this->_ship->getCoordinate()] = this->_ship->getType();
+    this->_ship->draw(this->_arena);
 }
 
 void Game::addNewBackGroundElem(int x, int y) {
@@ -88,8 +88,7 @@ void Game::_handleBackground() {
         this->_backgrounds[i] = NULL;
         continue;
       }
-      this->_arena[this->_backgrounds[i]->getCoordinate()] =
-          this->_backgrounds[i]->getType();
+      this->_backgrounds[i]->draw(this->_arena);
     }
 }
 
@@ -105,8 +104,7 @@ void Game::_handleMissiles() {
         this->_missiles[i] = NULL;
         continue;
       }
-      this->_arena[this->_missiles[i]->getCoordinate()] =
-          this->_missiles[i]->getType();
+      this->_missiles[i]->draw(this->_arena);
     }
 }
 
@@ -141,14 +139,7 @@ void Game::_handleEnemies() {
           // this->_enemies[i] = new Enemy(); // get score
         }
       } else {
-        // NEW WAY OF HANDLE DRAW, IS THIS OK WE THE REST OF THE CODE?
-        // if this is a boss, call draw() function
-        if (this->_enemies[i]->getType() == 'o') {
-          this->_enemies[i]->draw(this);
-        } else {
-          this->_arena[this->_enemies[i]->getCoordinate()] =
-              this->_enemies[i]->getType();
-        }
+        this->_enemies[i]->draw(this->_arena);
       }
     }
 }

@@ -15,9 +15,9 @@ Boss::~Boss() {
     // destruct game objects
 }
 
-void Boss::draw(Game * game) {
+void Boss::draw(char (& arena)[ARENA_SIZE]) {
     for (int i = 0; i < this->_size; i++) {
-        game->setArena(this->_surface[i]->getCoordinate(), this->_type);
+        arena[this->_surface[i]->getCoordinate()] = this->_type;
     }
 }
 

@@ -36,3 +36,7 @@ int AGameEntity::getXCoordinate(void) const { return this->_x; }
 int AGameEntity::getVelocity(void) const { return this->_velocity; }
 
 char AGameEntity::getType(void) const { return this->_type; }
+
+void AGameEntity::draw(char (& arena)[ARENA_SIZE]) {
+  arena[this->getCoordinate()] = this->getType();
+}
