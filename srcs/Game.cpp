@@ -17,9 +17,13 @@ Game::Game() : _turn(0), _score(0)
   for (int i = 0; i < MAX_EN_MISSILES; i++)
     (this->_missilesEnemy[i] = NULL);
 
-  this->_enemies[0] = new Hurler();
-  this->_enemies[1] = new Slicer();
+  // this->_enemies[0] = new Hurler();
+  // this->_enemies[1] = new Slicer();
+  this->_enemies[1] = new Enemy();
   this->_enemies[2] = new Boss();
+  // this->_enemies[3] = new Enemy();
+  // this->_enemies[4] = new Enemy();
+  // this->_enemies[5] = new Enemy();
 }
 
 Game::Game(Game const &src) {}
@@ -181,6 +185,8 @@ void Game::_handleEnemies()
   for (int i = 0; i < MAX_ENEMIES; i++)
     if (this->_enemies[i] != NULL)
     {
+      this->_enemies[i]->checkBorder(this->_arena);
+
       this->_enemies[i]->move(this->_turn, this->_arena);
       if (this->_enemies[i]->getType() == 'T' && this->_turn % 10 == 0)
         this->_enemyFireMissile(this->_enemies[i]);
@@ -197,6 +203,7 @@ void Game::_handleEnemies()
         {
         case 'S':
           this->_ship->collided();
+          break;
         case '|':
         {
           for (int x = 0; x < MAX_MISSILES; x++)
@@ -214,6 +221,7 @@ void Game::_handleEnemies()
             this->_enemies[i] = NULL;
             // this->_enemies[i] = new Enemy(); // get score
           }
+          break;
         }
         }
       }

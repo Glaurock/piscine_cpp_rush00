@@ -26,6 +26,7 @@ class Boss : public Enemy
     virtual char getCollision(char *arena);
     virtual bool collided(void);
     virtual bool checkOutOfBounds(void);
+    virtual int checkBorder(char *arena);
     static int boss1[6];
 };
 
