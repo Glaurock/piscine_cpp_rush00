@@ -21,6 +21,8 @@ public:
   virtual int move(int, char *arena); // can be overidden for more subtle patterns
   virtual int move(int);
   bool collided(void);
+  int getDirection(void);
+  void setDirection(int sign);
   // virtual void draw(char (& arena)[ARENA_SIZE]);
 };
 
