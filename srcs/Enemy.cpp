@@ -59,6 +59,8 @@ int Enemy::move(int turn, char *arena)
   {
     this->_y += 1;
   }
+  if (arena[0])
+    return 0;
   return 0;
 }
 

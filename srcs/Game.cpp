@@ -23,8 +23,6 @@ Game::Game() : _turn(0), _score(0)
   this->_enemies[0] = this->_enemySpawner();
 }
 
-Game::Game(Game const &src) {}
-
 Game::~Game()
 {
   for (int i = 0; i < MAX_BACKGROUNDS; i++)

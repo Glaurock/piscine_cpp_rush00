@@ -3,17 +3,17 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: gmonnier <gmonnier@student.42.fr>          +#+  +:+       +#+         #
+#    By: csimon <csimon@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/10 15:44:42 by gmonnier          #+#    #+#              #
-#    Updated: 2019/01/13 18:07:34 by gmonnier         ###   ########.fr        #
+#    Updated: 2019/01/13 18:51:03 by csimon           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = ft_retro
 
-CXX = g++
-#CXX_WARNINGS = -Wall -Werror -Wextra
+CXX = clang++
+CXX_WARNINGS = -Wall -Werror -Wextra
 CXX_STD = -std=c++98
 CXX_FLAGS = $(CXX_WARNINGS) $(CXX_STD)
 

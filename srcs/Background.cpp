@@ -6,21 +6,26 @@ Background::~Background() {}
 
 int Background::move(int turn, char *arena)
 {
-    this->_y++;
+    if (turn % this->_velocity == 0)
+        this->_y++;
     if (this->_y >= ARENA_HEIGHT)
     {
         this->_y = -1;
         this->_x = -1;
     }
+    if (arena[0])
+        return 0;
     return 0;
 }
 
-void Background::createRightMountain(Game *game, int size) {
+void Background::createRightMountain(Game *game, int size)
+{
     for (int i = 1; i < size; i++)
         game->addNewBackGroundElem(ARENA_WIDTH - i - 1, 0);
 }
 
-void Background::createLeftMountain(Game *game, int size) {
+void Background::createLeftMountain(Game *game, int size)
+{
     for (int i = 1; i < size; i++)
         game->addNewBackGroundElem(i, 0);
 }
@@ -38,9 +43,8 @@ void Background::bigMountain(Game *game)
 {
     if (Background::mountainCounter == 0)
         Background::left = rand() % 2;
-    
-    Background::left ? Background::createLeftMountain(game, Background::mountainCounter) :
-    Background::createRightMountain(game, Background::mountainCounter);
+
+    Background::left ? Background::createLeftMountain(game, Background::mountainCounter) : Background::createRightMountain(game, Background::mountainCounter);
 
     if (Background::mountainCounter == MOUNTAIN_MAX_SIZE)
         Background::mountainSide = true;

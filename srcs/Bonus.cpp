@@ -8,10 +8,14 @@ Bonus::~Bonus() {}
 
 // Bonus & Bonus::operator=(Bonus const & src) {}
 
-int Bonus::move(int turn, char *arena) {
-    
-    if (turn % this->_velocity == 0) {
+int Bonus::move(int turn, char *arena)
+{
+
+    if (turn % this->_velocity == 0)
+    {
         this->_y++;
     }
+    if (arena[0])
+        return 0;
     return 0;
 }

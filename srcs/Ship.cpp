@@ -39,6 +39,8 @@ int Ship::move(int input, char *arena)
         this->_y = 2;
     if (this->_y >= ARENA_HEIGHT - 1)
         this->_y = ARENA_HEIGHT - 2;
+    if (arena[0])
+        return 0;
     return 0;
 }
 
