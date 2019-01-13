@@ -132,22 +132,18 @@ void Game::_handleEnemies()
     if (this->_enemies[i] != NULL)
     {
       this->_enemies[i]->move(this->_turn, this->_arena);
-      if (this->_enemies[i]->getCoordinate() >
-          (ARENA_HEIGHT * ARENA_WIDTH) - 1)
+      if (this->_enemies[i]->getCoordinate() > (ARENA_HEIGHT * ARENA_WIDTH) - 1)
       {
         delete this->_enemies[i];
         this->_enemies[i] = this->_enemySpawner();
       }
-      if (this->_arena[this->_enemies[i]->getCoordinate()] ==
-          this->_ship->getType())
+      if (this->_arena[this->_enemies[i]->getCoordinate()] == this->_ship->getType())
         this->_ship->collided();
-      else if (this->_arena[this->_enemies[i]->getCoordinate()] ==
-               Missile::_type)
+      else if (this->_arena[this->_enemies[i]->getCoordinate()] == Missile::_type)
       {
         for (int x = 0; x < MAX_MISSILES; x++)
           if (this->_missiles[x] != NULL)
-            if (this->_missiles[x]->getCoordinate() ==
-                this->_enemies[i]->getCoordinate())
+            if (this->_missiles[x]->getCoordinate() == this->_enemies[i]->getCoordinate())
             {
               delete this->_missiles[x];
               this->_missiles[x] = NULL;

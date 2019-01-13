@@ -22,7 +22,7 @@ int main()
         display.draw(arena);
         display.displayScore(game);
         usleep(speed);
-        if (speed > 35000)
+        if (speed > 25000)
             speed -= 10;
     }
 
