@@ -24,6 +24,8 @@ void Enemy::setDirection(int sign)
   this->_direction *= sign;
 }
 
+void Enemy::reverseDirection() { this->_direction *= -1; }
+
 int Enemy::move(int turn, char *arena)
 {
   int velocity = this->getVelocity();

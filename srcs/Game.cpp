@@ -194,6 +194,7 @@ void Game::_handleEnemies()
         {
         case 'S':
           this->_ship->collided();
+          break;
         case '|':
         {
           for (int x = 0; x < MAX_MISSILES; x++)
@@ -211,7 +212,11 @@ void Game::_handleEnemies()
             this->_enemies[i] = NULL;
             // this->_enemies[i] = new Enemy(); // get score
           }
+          break;
         }
+        case '*':
+          this->_enemies[i]->reverseDirection();
+          break;
         }
       }
       else

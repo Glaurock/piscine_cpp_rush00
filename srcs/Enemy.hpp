@@ -25,6 +25,7 @@ public:
   Missile *fireMissile(void);
   int getDirection(void);
   void setDirection(int sign);
+  void reverseDirection();
   // virtual void draw(char (& arena)[ARENA_SIZE]);
 };
 
