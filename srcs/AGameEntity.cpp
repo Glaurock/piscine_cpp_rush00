@@ -41,3 +41,10 @@ void AGameEntity::draw(char (&arena)[ARENA_SIZE])
 {
   arena[this->getCoordinate()] = this->getType();
 }
+
+char AGameEntity::getCollision(char *arena)
+{
+  if (arena[(this->getCoordinate()) % ARENA_SIZE] != ' ')
+    return arena[(this->getCoordinate()) % ARENA_SIZE];
+  return 0;
+}

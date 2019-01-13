@@ -29,14 +29,27 @@ void Boss::draw(char (&arena)[ARENA_SIZE])
 
 void Boss::move(int turn, char *arena)
 {
-
   for (int i = 0; i < this->_size; i++)
   {
-    this->_surface[i]->move(
-        turn, arena); // care when we will remove Enemy move function
+    this->_surface[i]->move(turn, arena); // care when we will remove Enemy move function
   }
 }
 
 int Boss::getSize() const { return this->_size; }
 
 int Boss::boss1[] = {141, 142, 241, 242, 340, 343};
+
+char Boss::getCollision(char *arena)
+{
+  char worst_collision = 0;
+
+  for (int i = 0; i < this->_size; i++)
+  {
+    if (arena[(this->getCoordinate()) % ARENA_SIZE] == 'S')
+      return 'S';
+    if (arena[(this->getCoordinate()) % ARENA_SIZE] != ' ')
+      if (worst_collision != '|')
+        worst_collision = arena[(this->getCoordinate()) % ARENA_SIZE];
+  }
+  return worst_collision;
+}
