@@ -146,8 +146,17 @@ void Game::_handleShip(int input)
   }
   if (!shooted)
     this->_ship->move(input, this->_arena);
-  // if (this->_arena[this->_ship->getCoordinate() % ARENA_SIZE] != ' ')
-  if (this->_ship->getCollision(this->_arena))
+  if (this->_ship->getCollision(this->_arena) == 'B') {
+    for (int i = 0; i < MAX_BONUS; i++) {
+      if (this->_bonuses[i] != NULL) {
+        if (this->_bonuses[i]->getCoordinate() == this->_ship->getCoordinate()) {
+          delete this->_bonuses[i];
+          this->_bonuses[i] = NULL;
+          this->_ship->gainBonus();
+        }
+      }
+    }
+  } else if (this->_ship->getCollision(this->_arena) != 0)
     this->_ship->collided();
   this->_ship->draw(this->_arena);
 }
@@ -306,26 +315,19 @@ void Game::_handleEnemies()
 
 void Game::_handleBonus()
 {
-  Bonus *bonus;
-
   for (int i = 0; i < MAX_BONUS; i++)
   {
-    bonus = this->_bonuses[i];
-    if (bonus != NULL)
+    if (this->_bonuses[i] != NULL)
     {
-      bonus->move(this->_turn, this->_arena);
-      if (bonus->getYCoordinate() == -1)
+      this->_bonuses[i]->move(this->_turn, this->_arena);
+      if (this->_bonuses[i]->getYCoordinate() == -1)
       {
         delete this->_bonuses[i];
         this->_bonuses[i] = NULL;
+        return ;
       }
-      if (bonus->getCollision(this->_arena) == 'S')
-      {
-        delete this->_bonuses[i];
-        this->_bonuses[i] = NULL;
-        this->_ship->gainBonus();
-      }
-      bonus->draw(this->_arena);
+     
+      this->_bonuses[i]->draw(this->_arena);
     }
   }
 }
@@ -350,8 +352,8 @@ char *Game::update(int input)
 
   this->_spawn();
   this->_handleBackground();
-  this->_handleShip(input);
   this->_handleBonus();
+  this->_handleShip(input);
   this->_handleMissiles();
   this->_handleEnemies();
   return this->_arena;

@@ -15,15 +15,11 @@
 #define MOUNTAIN_MAX_SIZE 30
 
 #define SPAWN_TURN 100
-#define BOSS_SPAWN 200
+#define BOSS_SPAWN 300
 
-#define BOSS_HP 1
+#define BOSS_HP 10
 
 #include <cstdlib>
 #include <iostream>
-
-// remove this later
-#include <fstream>
-#include <string>
 
 #endif
