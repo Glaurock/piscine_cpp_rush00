@@ -9,7 +9,7 @@ int main()
     Game *game = new Game;
     char *arena;
     int input;
-    int speed = 30000;
+    int speed = 300;
     while (1)
     {
         input = display.getInput();
@@ -21,8 +21,8 @@ int main()
         arena = game->update(input);
         if (game->getLives() == 0)
         {
-            display.displayScore(*game);
             delete game;
+            display.game_over();
             while (1)
             {
                 input = display.getInput();

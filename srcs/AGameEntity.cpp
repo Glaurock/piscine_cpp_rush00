@@ -39,7 +39,7 @@ char AGameEntity::getType(void) const { return this->_type; }
 
 void AGameEntity::draw(char (&arena)[ARENA_SIZE])
 {
-  arena[this->getCoordinate()] = this->getType();
+  arena[(this->getCoordinate()) % ARENA_SIZE] = this->getType();
 }
 
 char AGameEntity::getCollision(char *arena)

@@ -26,41 +26,52 @@ Game::~Game()
 {
   for (int i = 0; i < MAX_BACKGROUNDS; i++)
   {
-    delete this->_backgrounds[i];
+    if (this->_backgrounds[i] != NULL)
+      delete this->_backgrounds[i];
     (this->_backgrounds[i] = NULL);
   }
   for (int i = 0; i < MAX_ENEMIES; i++)
   {
-    delete this->_enemies[i];
+    if (this->_enemies[i] != NULL)
+      delete this->_enemies[i];
     (this->_enemies[i] = NULL);
   }
   for (int i = 0; i < MAX_MISSILES; i++)
   {
-    delete this->_missiles[i];
+    if (this->_missiles[i] != NULL)
+      delete this->_missiles[i];
     (this->_missiles[i] = NULL);
   }
   for (int i = 0; i < MAX_EN_MISSILES; i++)
   {
-    delete this->_missilesEnemy[i];
+    if (this->_missilesEnemy[i] != NULL)
+      delete this->_missilesEnemy[i];
     (this->_missilesEnemy[i] = NULL);
   }
   // TODO: DELETE THINGS
 }
 
-void Game::_spawn() { 
-  if (this->_turn % SPAWN_TURN == 0) {
-    for (int i = 0; i < MAX_ENEMIES; i++) {
-      if (this->_enemies[i] == NULL) {
+void Game::_spawn()
+{
+  if (this->_turn % SPAWN_TURN == 0)
+  {
+    for (int i = 0; i < MAX_ENEMIES; i++)
+    {
+      if (this->_enemies[i] == NULL)
+      {
         this->_enemies[i] = this->_enemySpawner();
-        break ;
+        break;
       }
     }
   }
-  if (this->_turn % BOSS_SPAWN == 0) {
-     for (int i = 0; i < MAX_ENEMIES; i++) {
-      if (this->_enemies[i] == NULL) {
+  if (this->_turn % BOSS_SPAWN == 0)
+  {
+    for (int i = 0; i < MAX_ENEMIES; i++)
+    {
+      if (this->_enemies[i] == NULL)
+      {
         this->_enemies[i] = new Boss();
-        break ;
+        break;
       }
     }
   }
@@ -70,7 +81,7 @@ Enemy *Game::_enemySpawner()
 {
   Enemy *enemy;
   int x = rand() % (ARENA_WIDTH - 20) + 20;
-  int y = rand() % 10 + 2;  
+  int y = rand() % 5 + 2;
 
   switch (rand() % 3)
   {
@@ -87,7 +98,7 @@ Enemy *Game::_enemySpawner()
   return enemy;
 }
 
-void Game::setArena(int pos, char type) { this->_arena[pos] = type; }
+void Game::setArena(int pos, char type) { this->_arena[pos % ARENA_SIZE] = type; }
 
 void Game::_handleShip(int input)
 {
@@ -122,14 +133,14 @@ void Game::_handleShip(int input)
     delete shot;
   }
   this->_ship->move(input, this->_arena);
-  if (this->_arena[this->_ship->getCoordinate()] != ' ')
+  if (this->_arena[this->_ship->getCoordinate() % ARENA_SIZE] != ' ')
     this->_ship->collided();
   this->_ship->draw(this->_arena);
 }
 
 void Game::addNewBackGroundElem(int x, int y)
 {
-  if (this->_arena[y * ARENA_WIDTH + x] == '*')
+  if (this->_arena[(y * ARENA_WIDTH + x) % ARENA_SIZE] == '*')
     return;
   Background *elem = new Background(x, y, 1, '*');
   int i = Background::getNextFreeSpace(this->_backgrounds);
@@ -148,7 +159,7 @@ void Game::_handleBackground()
     if (this->_backgrounds[i] != NULL)
     {
       this->_backgrounds[i]->move(this->_turn, this->_arena);
-      if (this->_backgrounds[i]->getXCoordinate() == -1 &&
+      if (this->_backgrounds[i]->getXCoordinate() == -1 ||
           this->_backgrounds[i]->getYCoordinate() == -1)
       {
         delete this->_backgrounds[i];
@@ -166,7 +177,7 @@ void Game::_handleMissiles()
     if (this->_missiles[i] != NULL)
     {
       this->_missiles[i]->move(this->_turn, this->_arena);
-      if (this->_missiles[i]->getXCoordinate() == -1 &&
+      if (this->_missiles[i]->getXCoordinate() == -1 ||
           this->_missiles[i]->getYCoordinate() == -1)
       {
         delete this->_missiles[i];
@@ -181,7 +192,7 @@ void Game::_handleMissiles()
     if (this->_missilesEnemy[i] != NULL)
     {
       this->_missilesEnemy[i]->move(this->_turn, this->_arena);
-      if (this->_missilesEnemy[i]->getXCoordinate() == -1 &&
+      if (this->_missilesEnemy[i]->getXCoordinate() == -1 ||
           this->_missilesEnemy[i]->getYCoordinate() == -1)
       {
         delete this->_missilesEnemy[i];
@@ -249,7 +260,7 @@ void Game::_handleEnemies()
               }
           if (this->_enemies[i]->collided())
           {
-            this->_arena[this->_enemies[i]->getCoordinate()] = 'X';
+            this->_arena[(this->_enemies[i]->getCoordinate()) % ARENA_SIZE] = 'X';
             delete this->_enemies[i];
             this->_enemies[i] = NULL;
             // this->_enemies[i] = new Enemy(); // get score
