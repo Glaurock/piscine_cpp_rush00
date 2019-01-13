@@ -23,7 +23,7 @@ public:
 
   int getLives(void) const;
   int move(int dir, char *arena);
-  Missile *fireMissile(void);
+  Missile *fireMissile(bool);
   void collided(void);
   void gainBonus();
   bool getWeapon() const;

@@ -50,8 +50,11 @@ int Ship::move(int input, char *arena)
     return 0;
 }
 
-Missile *Ship::fireMissile(void) { return new Missile(this->_x, this->_y - 1); }
-// Ship & Ship::operator=(Ship const & src) {}
+Missile *Ship::fireMissile(bool doubleShot) { 
+    if (doubleShot)
+        return new Missile(this->_x + 1, this->_y - 1);
+    return new Missile(this->_x, this->_y - 1);
+}
 
 void Ship::collided(void)
 {
