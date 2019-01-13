@@ -223,6 +223,8 @@ void Game::_handleEnemies()
           }
           break;
         }
+        default:
+          break;
         }
       }
       else

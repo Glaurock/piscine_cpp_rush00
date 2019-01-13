@@ -31,7 +31,7 @@ int Boss::move(int turn, char *arena)
 {
   int direction = 0;
   int sign = this->_surface[0]->getDirection();
-
+  int retval = 0;
   if (this->checkBorder(arena))
   {
     for (int i = 0; i < this->_size; i++)
@@ -42,12 +42,25 @@ int Boss::move(int turn, char *arena)
 
   for (int i = 0; i < this->_size; i++)
   {
-    direction = this->_surface[i]->move(turn, arena); // care when we will remove Enemy move function
-    // if (direction)
-    // {
-    //   this->_surface[i]->resetYCollision();
-    //   direction = 0;
-    // }
+    if ((this->_surface[i]->getXCoordinate() + this->_surface[i]->getDirection()) > ARENA_WIDTH - MAX_BACKGROUNDS_SIZE + 1 ||
+        (this->_surface[i]->getXCoordinate() + this->_surface[i]->getDirection()) < MAX_BACKGROUNDS_SIZE + 1) //// a border of the window would be reached
+    {
+      this->_surface[i]->_y += 1;
+      this->_surface[i]->setDirection(-1); // edge was reached, reverse direction
+      retval = 1;
+    }
+    else if (this->_surface[i]->getCollision(arena))
+    {
+      this->_surface[i]->getCollision(arena);
+      this->_surface[i]->setDirection(-1);
+      this->_surface[i]->_x += this->_surface[i]->_direction;
+      retval = 1;
+    } // care when we will remove Enemy move function
+    if (retval)
+    {
+      this->_surface[i]->resetYCollision();
+      retval = 0;
+    }
   }
 }
 
@@ -80,7 +93,7 @@ char Boss::getCollision(char *arena)
       if (worst_collision != '|')
         worst_collision = arena[(this->_surface[i]->getCoordinate()) % ARENA_SIZE];
   }
-  if (worst_collision == '*' || worst_collision == 'Y' || worst_collision == 'o')
+  if (worst_collision != '|') // || worst_collision == 'Y' || worst_collision == 'o')
     return 0;
   return worst_collision;
 }
