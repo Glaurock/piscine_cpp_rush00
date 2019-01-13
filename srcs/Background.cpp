@@ -40,12 +40,16 @@ void Background::popMountain(Game *game)
 
 void Background::bigMountain(Game *game)
 {
-    if (Background::mountainCounter == 0)
+    if (Background::mountainCounter == 0) {
         Background::left = rand() % 2;
+        Background::size = rand() % MOUNTAIN_MAX_SIZE;
+    }
 
-    Background::left ? Background::createLeftMountain(game, Background::mountainCounter) : Background::createRightMountain(game, Background::mountainCounter);
+    Background::left ? 
+        Background::createLeftMountain(game, Background::mountainCounter) : 
+        Background::createRightMountain(game, Background::mountainCounter);
 
-    if (Background::mountainCounter == MOUNTAIN_MAX_SIZE)
+    if (Background::mountainCounter == Background::size)
         Background::mountainSide = true;
     if (!Background::mountainSide)
         Background::mountainCounter++;
@@ -68,3 +72,4 @@ int Background::getNextFreeSpace(Background **backgrounds)
 unsigned int Background::mountainCounter = 0;
 bool Background::mountainSide = false;
 bool Background::left = false;
+unsigned int Background::size = 0;

@@ -164,7 +164,6 @@ void Game::addNewBackGroundElem(int x, int y, char type)
 void Game::_handleBackground()
 {
   this->addNewBackGroundElem(rand() % (ARENA_SIZE + 10) - 10, 2, '.');
-  this->addNewBackGroundElem(rand() % (ARENA_SIZE + 10) - 10, 2, '.');
 
   Background::popMountain(this);
   if (Background::mountainCounter != 0 || this->_turn % 30 == 0)
