@@ -1,7 +1,7 @@
 #include "Enemy.hpp"
 
-Enemy::Enemy(int x, int y, int velocity, char type)
-    : AGameEntity(x, y, velocity, type), _direction(1)
+Enemy::Enemy(int x, int y, int velocity, char type, int value)
+    : AGameEntity(x, y, velocity, type), _direction(1), _value(value)
 {
   return;
 }
@@ -18,6 +18,13 @@ int Enemy::getDirection(void)
 void Enemy::setDirection(int sign)
 {
   this->_direction *= sign;
+}
+
+int Enemy::getValue(void)
+{
+  if (this->_type == 'o')
+    return 5000;
+  return this->_value;
 }
 
 void Enemy::setX(int x)

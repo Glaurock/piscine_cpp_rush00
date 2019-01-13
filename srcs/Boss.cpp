@@ -1,6 +1,6 @@
 #include "Boss.hpp"
 
-Boss::Boss() : _hp(BOSS_HP)
+Boss::Boss() : _hp(BOSS_HP), _value(5000)
 {
   this->_velocity = 2;
   this->_type = 'o';
@@ -108,11 +108,13 @@ bool Boss::checkOutOfBounds(void)
 //   return (this->_surface[4]->getYCoordinate() * ARENA_WIDTH + this->_surface[i]->getXCoordinate());
 // }
 
-int Boss::getXCoordinate(void) const {
+int Boss::getXCoordinate(void) const
+{
   return (this->_surface[0]->getXCoordinate());
 }
 
-int Boss::getYCoordinate(void) const {
+int Boss::getYCoordinate(void) const
+{
   return (this->_surface[0]->getYCoordinate());
 }
 

@@ -12,6 +12,7 @@ private:
   Boss &operator=(Boss const &src);
   int _size;
   int _hp;
+  int _value;
 
   Enemy *_surface[6];
 

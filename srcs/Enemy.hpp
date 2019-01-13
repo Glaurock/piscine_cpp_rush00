@@ -14,9 +14,10 @@ private:
   Enemy(Enemy const &src);
   Enemy &operator=(Enemy const &src);
   int _hp;
+  int _value;
 
 public:
-  Enemy(int x = 10, int y = 3, int velocity = 2, char type = 'T');
+  Enemy(int x = 10, int y = 3, int velocity = 2, char type = 'T', int value = 500);
   virtual ~Enemy();
 
   virtual int move(int, char *arena); // can be overidden for more subtle patterns
@@ -30,6 +31,7 @@ public:
   void bounce();
   virtual bool checkOutOfBounds(void);
   virtual int checkBorder(char *arena);
+  int getValue(void);
   // virtual void draw(char (& arena)[ARENA_SIZE]);
 };
 

@@ -6,7 +6,7 @@ Ship::Ship()
     this->_y = ARENA_HEIGHT - 2;
     this->_type = 'S';
     this->_velocity = 3;
-    this->_lives = 4;
+    this->_lives = 3;
 }
 
 // Ship::Ship(Ship const & src) {}
@@ -17,17 +17,23 @@ int Ship::move(int input, char *arena)
 {
     switch (input)
     {
-    case KEY_UP:
+    case 56:
         this->_y -= this->_velocity / 2;
         break;
-    case KEY_DOWN:
+    case 53:
         this->_y += this->_velocity / 2;
         break;
-    case KEY_LEFT:
+    case 55:
         this->_x -= this->_velocity;
         break;
-    case KEY_RIGHT:
+    case 57:
         this->_x += this->_velocity;
+        break;
+    case 52:
+        this->_x -= 1;
+        break;
+    case 54:
+        this->_x += 1;
         break;
     }
     /* Handle screen size limits */
