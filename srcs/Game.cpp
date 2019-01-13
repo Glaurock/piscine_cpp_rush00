@@ -172,7 +172,6 @@ void Game::_handleBackground()
     Background::bigMountain(this);
   }
 
-
   for (int i = 0; i < MAX_BACKGROUNDS; i++) // Move backgrounds first
     if (this->_backgrounds[i] != NULL)
     {

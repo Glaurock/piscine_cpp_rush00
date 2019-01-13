@@ -29,6 +29,7 @@ public:
   static unsigned int mountainCounter;
   static bool mountainSide;
   static bool left;
+  static unsigned int size;
 };
 
 #endif // Background_HPP
