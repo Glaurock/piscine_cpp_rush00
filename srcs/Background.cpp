@@ -42,7 +42,7 @@ void Background::bigMountain(Game *game)
 {
     if (Background::mountainCounter == 0) {
         Background::left = rand() % 2;
-        Background::size = rand() % MOUNTAIN_MAX_SIZE;
+        Background::size = (rand() + 15) % MOUNTAIN_MAX_SIZE;
     }
 
     Background::left ? 

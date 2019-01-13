@@ -12,7 +12,7 @@ int Hurler::move(int turn, char *arena)
   if (turn % velocity == 0)
   {
     this->_x += 1;
-    this->_y += 2;
+    this->_y += 1;
   }
   if (arena[0])
     return 0;
