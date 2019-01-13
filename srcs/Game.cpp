@@ -146,27 +146,32 @@ void Game::_handleShip(int input)
   }
   if (!shooted)
     this->_ship->move(input, this->_arena);
-  if (this->_arena[this->_ship->getCoordinate() % ARENA_SIZE] != ' ')
+  // if (this->_arena[this->_ship->getCoordinate() % ARENA_SIZE] != ' ')
+  if (this->_ship->getCollision(this->_arena))
     this->_ship->collided();
   this->_ship->draw(this->_arena);
 }
 
-void Game::addNewBackGroundElem(int x, int y)
+void Game::addNewBackGroundElem(int x, int y, char type)
 {
-  if (this->_arena[(y * ARENA_WIDTH + x) % ARENA_SIZE] == '*')
+  if (this->_arena[(y * ARENA_WIDTH + x) % ARENA_SIZE] != ' ')
     return;
-  Background *elem = new Background(x, y, 1, '*');
+  Background *elem = new Background(x, y, 1, type);
   int i = Background::getNextFreeSpace(this->_backgrounds);
   this->_backgrounds[i] = elem;
 }
 
 void Game::_handleBackground()
 {
+  this->addNewBackGroundElem(rand() % (ARENA_SIZE + 10) - 10, 2, '.');
+  this->addNewBackGroundElem(rand() % (ARENA_SIZE + 10) - 10, 2, '.');
+
   Background::popMountain(this);
   if (Background::mountainCounter != 0 || this->_turn % 30 == 0)
   {
     Background::bigMountain(this);
   }
+
 
   for (int i = 0; i < MAX_BACKGROUNDS; i++) // Move backgrounds first
     if (this->_backgrounds[i] != NULL)
