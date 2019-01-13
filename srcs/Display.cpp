@@ -19,8 +19,6 @@ Display::Display()
     nodelay(this->_win, true);
 }
 
-Display::Display(Display const &src) {}
-
 Display::~Display() { endwin(); }
 
 int Display::getInput() { return wgetch(this->_win); }
@@ -45,6 +43,8 @@ int getColor(char c)
         return 5;
     case '*':
         return 1;
+    default:
+        return 0;
     }
 }
 
@@ -105,5 +105,3 @@ void Display::draw(char *arena)
     wrefresh(this->_win);
     wrefresh(this->_score);
 }
-
-Display &Display::operator=(Display const &src) {}

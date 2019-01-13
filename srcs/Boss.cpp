@@ -45,6 +45,7 @@ int Boss::move(int turn, char *arena)
   {
     this->_surface[i]->move(turn, arena);
   }
+  return 0;
 }
 
 int Boss::checkBorder(char *arena)

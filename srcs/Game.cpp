@@ -210,8 +210,7 @@ void Game::_enemyFireMissile(Enemy *enemy)
 {
   Missile *shot;
   shot = enemy->fireMissile();
-  int i = 0;
-  for (i; i < MAX_EN_MISSILES; i++)
+  for (int i = 0; i < MAX_EN_MISSILES; i++)
   {
     if (this->_missilesEnemy[i] == NULL)
     {
@@ -324,5 +323,3 @@ char *Game::update(int input)
   this->_handleEnemies();
   return this->_arena;
 }
-
-Game &Game::operator=(Game const &src) {}

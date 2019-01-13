@@ -7,8 +7,6 @@ Missile::Missile(Missile const &src) {}
 
 Missile::~Missile() {}
 
-Missile &Missile::operator=(Missile const &src) {}
-
 int Missile::move(int turn, char *arena)
 {
     this->_y += this->_dir;
