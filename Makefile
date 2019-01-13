@@ -6,7 +6,7 @@
 #    By: gmonnier <gmonnier@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/10 15:44:42 by gmonnier          #+#    #+#              #
-#    Updated: 2019/01/13 12:41:42 by gmonnier         ###   ########.fr        #
+#    Updated: 2019/01/13 18:07:34 by gmonnier         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,8 @@ SRC = \
 		srcs/Background.cpp \
 		srcs/Hurler.cpp \
 		srcs/Slicer.cpp \
-		srcs/Boss.cpp
+		srcs/Boss.cpp \
+		srcs/Bonus.cpp
 
 OBJ = $(SRC:%.cpp=%.o)
 

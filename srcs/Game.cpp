@@ -17,6 +17,9 @@ Game::Game() : _turn(0), _score(0)
   for (int i = 0; i < MAX_EN_MISSILES; i++)
     (this->_missilesEnemy[i] = NULL);
 
+  for (int i = 0; i < MAX_BONUS; i++)
+    (this->_bonuses[i] = NULL);
+
   this->_enemies[0] = this->_enemySpawner();
 }
 
@@ -250,9 +253,15 @@ void Game::_handleEnemies()
           if (this->_enemies[i]->collided())
           {
             this->_arena[this->_enemies[i]->getCoordinate()] = 'X';
+            if (this->_enemies[i]->getType() == 'o') {
+              for (int i = 0; i < MAX_BONUS; i++) {
+                if (this->_bonuses[i] == NULL) {
+                  this->_bonuses[i] = new Bonus();
+                }
+              }
+            }
             delete this->_enemies[i];
             this->_enemies[i] = NULL;
-            // this->_enemies[i] = new Enemy(); // get score
           }
           break;
         }
@@ -265,6 +274,15 @@ void Game::_handleEnemies()
         this->_enemies[i]->draw(this->_arena);
       }
     }
+}
+
+void Game::_handleBonus() {
+  for (int i = 0; i < MAX_BONUS; i++) {
+    if (this->_bonuses[i] != NULL) {
+      this->_bonuses[i]->move(this->_turn, this->_arena);
+      this->_bonuses[i]->draw(this->_arena);
+    }
+  }
 }
 
 int Game::getScore(void) const { return this->_score; }
@@ -284,6 +302,7 @@ char *Game::update(int input)
   this->_spawn();
   this->_handleBackground();
   this->_handleShip(input);
+  this->_handleBonus();
   this->_handleMissiles();
   this->_handleEnemies();
   return this->_arena;
