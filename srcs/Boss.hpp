@@ -22,7 +22,7 @@ class Boss : public Enemy
 
     void draw(char (&arena)[ARENA_SIZE]);
     virtual void move(int, char *arena);
-
+    virtual char getCollision(char *arena);
     static int boss1[6];
 };
 
