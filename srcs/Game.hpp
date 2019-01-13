@@ -46,7 +46,7 @@ public:
   virtual ~Game();
 
   char *update(int input);
-  void addNewBackGroundElem(int, int);
+  void addNewBackGroundElem(int, int, char);
   void setArena(int, char);
   int getScore(void) const;
   int getLives(void) const;

@@ -21,19 +21,18 @@ int Background::move(int turn, char *arena)
 void Background::createRightMountain(Game *game, int size)
 {
     for (int i = 1; i < size; i++)
-        game->addNewBackGroundElem(ARENA_WIDTH - i - 1, 0);
+        game->addNewBackGroundElem(ARENA_WIDTH - i - 1, 0, '*');
 }
 
 void Background::createLeftMountain(Game *game, int size)
 {
     for (int i = 1; i < size; i++)
-        game->addNewBackGroundElem(i, 0);
+        game->addNewBackGroundElem(i, 0, '*');
 }
 
 void Background::popMountain(Game *game)
 {
     int size = rand() % MAX_BACKGROUNDS_SIZE + 2;
-
     Background::createLeftMountain(game, size);
     size = rand() % MAX_BACKGROUNDS_SIZE + 2;
     Background::createRightMountain(game, size);

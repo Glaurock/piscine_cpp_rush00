@@ -15,7 +15,7 @@ Ship::~Ship() {}
 
 void Ship::extraLife(void)
 {
-    this->_life += 1;
+    this->_lives += 1;
 }
 
 int Ship::move(int input, char *arena)
