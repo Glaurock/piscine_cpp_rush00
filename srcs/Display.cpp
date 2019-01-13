@@ -42,7 +42,9 @@ int getColor(char c)
     case 'S':
         return 5;
     case '*':
-        return 1;
+        return 6;
+    case 'K':
+        return 4;
     default:
         return 0;
     }
@@ -68,7 +70,6 @@ void Display::displayScore(Game const &game)
 
     mvwprintw(this->_score, 1, 2, "Score:              %d", score);
     wmove(this->_score, 3, 2);
-    //   mvwprintw(this->_score, 2, 2, "Score:              %d", score);
     wattron(this->_score, COLOR_PAIR(5));
     for (int i = 0; i < 7; i++)
     {

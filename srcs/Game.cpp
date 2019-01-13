@@ -277,6 +277,7 @@ void Game::_handleEnemies()
                 }
               }
             }
+            this->_score += this->_enemies[i]->getValue();
             delete this->_enemies[i];
             this->_enemies[i] = NULL;
           }
