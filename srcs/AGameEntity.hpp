@@ -29,7 +29,6 @@ public:
   int getVelocity(void) const;
   char getType(void) const;
   virtual char getCollision(char *arena);
-  // virtual void collided(void) const = 0;
 };
 
 #endif

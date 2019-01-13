@@ -1,6 +1,5 @@
 #include "Slicer.hpp"
 
-// Slicer::Slicer() {}
 Slicer::Slicer(int x, int y, int velocity, char type) : Enemy(x, y, velocity, type, 1000) {}
 
 Slicer::~Slicer() {}
@@ -18,5 +17,3 @@ int Slicer::move(int turn, char *arena)
     return 0;
   return 0;
 }
-
-// Slicer & Slicer::operator=(Slicer const & src) {}

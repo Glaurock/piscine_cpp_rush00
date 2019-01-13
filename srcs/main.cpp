@@ -1,6 +1,5 @@
 #include "Display.hpp"
 #include "Game.hpp"
-
 #include <unistd.h> /*sleep*/
 #include <time.h>
 

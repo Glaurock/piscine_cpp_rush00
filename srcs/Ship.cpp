@@ -9,8 +9,6 @@ Ship::Ship()
     this->_lives = 3;
 }
 
-// Ship::Ship(Ship const & src) {}
-
 Ship::~Ship() {}
 
 void Ship::extraLife(void)
@@ -65,16 +63,13 @@ Missile *Ship::fireMissile(bool doubleShot)
 void Ship::collided(void)
 {
     this->_lives -= 1;
-    // if (this->_lives == 0)
-    //     ;           // display game over, etc
-    this->_x = ARENA_WIDTH / 2; // respawn at start
+    this->_x = ARENA_WIDTH / 2;
     this->_y = ARENA_HEIGHT - 2;
     this->_hasWeapon = false;
 }
 
 void Ship::gainBonus(void)
 {
-    // this->_lives++;
     this->_hasWeapon = true;
 }
 
