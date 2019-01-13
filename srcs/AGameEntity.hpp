@@ -24,6 +24,7 @@ public:
   virtual void draw(char (&arena)[ARENA_SIZE]);
   int getCoordinate(void) const;
   int getYCoordinate(void) const;
+  void resetYCollision(void);
   int getXCoordinate(void) const;
   int getVelocity(void) const;
   char getType(void) const;

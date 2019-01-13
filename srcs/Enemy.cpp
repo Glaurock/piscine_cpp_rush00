@@ -14,6 +14,16 @@ Enemy::~Enemy()
 
 Enemy &Enemy::operator=(Enemy const &src) {}
 
+int Enemy::getDirection(void)
+{
+  return this->_direction;
+}
+
+void Enemy::setDirection(int sign)
+{
+  this->_direction *= sign;
+}
+
 int Enemy::move(int turn, char *arena)
 {
   int velocity = this->getVelocity();

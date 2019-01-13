@@ -23,6 +23,9 @@ public:
   virtual int move(int);
   bool collided(void);
   Missile *fireMissile(void);
+  int getDirection(void);
+  void setDirection(int sign);
+  // virtual void draw(char (& arena)[ARENA_SIZE]);
 };
 
 #endif // ENEMY_HPP

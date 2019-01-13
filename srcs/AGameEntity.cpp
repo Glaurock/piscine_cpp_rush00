@@ -48,3 +48,8 @@ char AGameEntity::getCollision(char *arena)
     return arena[(this->getCoordinate()) % ARENA_SIZE];
   return 0;
 }
+
+void AGameEntity::resetYCollision(void)
+{
+  this->_y -= 1;
+}
