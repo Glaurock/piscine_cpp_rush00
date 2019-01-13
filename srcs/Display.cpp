@@ -30,7 +30,7 @@ int getColor(char c)
     case ' ':
         return 0;
     case 'T':
-        return 4;
+        return 2;
     case 'Y':
         return 4;
     case '|':
@@ -44,7 +44,7 @@ int getColor(char c)
     case '*':
         return 6;
     case 'K':
-        return 4;
+        return 2;
     default:
         return 0;
     }
@@ -63,7 +63,7 @@ void Display::game_over(void)
     return;
 }
 
-void Display::displayScore(Game const &game)
+void Display::displayScore(Game const &game, int timer)
 {
     int score = game.getScore();
     int lives = game.getLives();
@@ -83,6 +83,7 @@ void Display::displayScore(Game const &game)
         }
     }
     wattroff(this->_score, COLOR_PAIR(5));
+    mvwprintw(this->_score, 5, 2, "Timer:        %d:%d", (timer / 20000) / 60, (timer / 20000) % 60);
     wrefresh(this->_score);
 }
 

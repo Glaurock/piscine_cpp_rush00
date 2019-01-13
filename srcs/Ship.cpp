@@ -55,7 +55,8 @@ int Ship::move(int input, char *arena)
     return 0;
 }
 
-Missile *Ship::fireMissile(bool doubleShot) { 
+Missile *Ship::fireMissile(bool doubleShot)
+{
     if (doubleShot)
         return new Missile(this->_x + 1, this->_y - 1);
     return new Missile(this->_x, this->_y - 1);
