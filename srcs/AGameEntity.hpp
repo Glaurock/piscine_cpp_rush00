@@ -3,7 +3,8 @@
 
 #include "ft_retro.hpp"
 
-class AGameEntity {
+class AGameEntity
+{
 private:
 protected:
   int _x;
@@ -20,6 +21,7 @@ public:
   AGameEntity &operator=(AGameEntity const &rhs);
 
   virtual void move(int) = 0;
+  virtual void draw(char (&arena)[ARENA_SIZE]);
   int getCoordinate(void) const;
   int getYCoordinate(void) const;
   int getXCoordinate(void) const;

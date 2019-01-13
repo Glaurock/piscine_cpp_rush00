@@ -52,3 +52,5 @@ void Ship::collided(void)
     this->_x = ARENA_WIDTH / 2; // respawn at start
     this->_y = ARENA_HEIGHT - 2;
 }
+
+int Ship::getLives(void) const { return this->_lives; }

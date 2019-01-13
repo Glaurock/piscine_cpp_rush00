@@ -35,7 +35,7 @@ int getColor(char c)
     case '|':
         return 3;
     case 'H':
-        return 1;
+        return 4;
     case 'o':
         return 2;
     case 'S':
@@ -43,6 +43,30 @@ int getColor(char c)
     case '*':
         return 1;
     }
+}
+
+void Display::displayScore(Game const &game)
+{
+    int score = game.getScore();
+    int lives = game.getLives();
+
+    mvwprintw(this->_score, 1, 2, "Score:              %d", score);
+    wmove(this->_score, 3, 2);
+    //   mvwprintw(this->_score, 2, 2, "Score:              %d", score);
+    wattron(this->_score, COLOR_PAIR(5));
+    for (int i = 0; i < 5; i++)
+    {
+        wmove(this->_score, 3, 2 + i * 2);
+        if (i < lives)
+            waddch(this->_score, 'S');
+        else
+        {
+            wattroff(this->_score, COLOR_PAIR(5));
+            waddch(this->_score, ' ');
+        }
+    }
+    wattroff(this->_score, COLOR_PAIR(5));
+    wrefresh(this->_score);
 }
 
 void Display::draw(char *arena)
