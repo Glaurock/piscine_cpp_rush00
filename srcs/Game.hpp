@@ -20,6 +20,7 @@ private:
   char _arena[ARENA_WIDTH * ARENA_HEIGHT];
   Ship *_ship;
   Missile *_missiles[MAX_MISSILES];
+  Missile *_missilesEnemy[MAX_EN_MISSILES];
   Enemy *_enemies[MAX_ENEMIES];
   Background *_backgrounds[MAX_BACKGROUNDS];
   unsigned int _turn;
@@ -29,6 +30,7 @@ private:
   void _handleBackground();
   void _handleMissiles();
   void _handleEnemies();
+  void _enemyFireMissile(Enemy * enemy);
   Enemy *_enemySpawner();
 
   Game(Game const &src);

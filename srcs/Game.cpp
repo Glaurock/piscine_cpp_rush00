@@ -13,6 +13,10 @@ Game::Game() : _turn(0), _score(0)
 
   for (int i = 0; i < MAX_MISSILES; i++)
     (this->_missiles[i] = NULL);
+
+  for (int i = 0; i < MAX_EN_MISSILES; i++)
+    (this->_missilesEnemy[i] = NULL);
+
   this->_enemies[0] = new Hurler();
   this->_enemies[1] = new Slicer();
   this->_enemies[2] = new Boss();
@@ -52,6 +56,18 @@ void Game::setArena(int pos, char type) { this->_arena[pos] = type; }
 
 void Game::_handleShip(int input)
 {
+  /* Check enemy missiles collision */
+  for (int i = 0; i < MAX_EN_MISSILES; i++) {
+    if (this->_missilesEnemy[i] != NULL) {
+      if (this->_missilesEnemy[i]->getCoordinate() == this->_ship->getCoordinate())
+      {
+        this->_ship->collided();
+        delete this->_missilesEnemy[i];
+        this->_missilesEnemy[i] = NULL;
+        return ;
+      }
+    }
+  }
 
   if (input == 32)
   { // MACRO FOR SPACE?
@@ -108,7 +124,6 @@ void Game::_handleBackground()
 
 void Game::_handleMissiles()
 {
-
   for (int i = 0; i < MAX_MISSILES;
        i++) // move missiles last. if they hit an enemy,destroy it
     if (this->_missiles[i] != NULL)
@@ -123,6 +138,36 @@ void Game::_handleMissiles()
       }
       this->_missiles[i]->draw(this->_arena);
     }
+
+  /* Enemies missiles */
+  for (int i = 0; i < MAX_EN_MISSILES; i++)
+    if (this->_missilesEnemy[i] != NULL)
+    {
+      this->_missilesEnemy[i]->move(this->_turn, this->_arena);
+      if (this->_missilesEnemy[i]->getXCoordinate() == -1 &&
+          this->_missilesEnemy[i]->getYCoordinate() == -1)
+      {
+        delete this->_missilesEnemy[i];
+        this->_missilesEnemy[i] = NULL;
+        continue;
+      }
+      this->_missilesEnemy[i]->draw(this->_arena);
+    }
+}
+
+void Game::_enemyFireMissile(Enemy * enemy) {
+  Missile *shot;
+  shot = enemy->fireMissile();
+  int i = 0;
+  for (i; i < MAX_EN_MISSILES; i++)
+  {
+    if (this->_missilesEnemy[i] == NULL)
+    {
+      this->_missilesEnemy[i] = shot;
+      return ;
+    }
+  }
+  delete shot;
 }
 
 void Game::_handleEnemies()
@@ -133,6 +178,11 @@ void Game::_handleEnemies()
     if (this->_enemies[i] != NULL)
     {
       this->_enemies[i]->move(this->_turn, this->_arena);
+      // fire if boss
+      if (this->_enemies[i]->getType() == 'T' && this->_turn % 10 == 0) {
+        this->_enemyFireMissile(this->_enemies[i]);
+      }
+
       if (this->_enemies[i]->getCoordinate() > (ARENA_HEIGHT * ARENA_WIDTH) - 1)
       {
         delete this->_enemies[i];

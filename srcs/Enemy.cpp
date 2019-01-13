@@ -56,3 +56,8 @@ bool Enemy::collided(void)
     return true; // destroys enemy
   return false;
 }
+
+Missile * Enemy::fireMissile(void) {
+
+  return new Missile(this->getXCoordinate(), this->getYCoordinate() + 1, 1, '|', 1);
+}

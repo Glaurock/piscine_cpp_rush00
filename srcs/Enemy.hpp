@@ -2,6 +2,7 @@
 #define ENEMY_HPP
 
 #include "AGameEntity.hpp"
+#include "Missile.hpp"
 
 class Enemy : public AGameEntity
 {
@@ -21,7 +22,7 @@ public:
   virtual int move(int, char *arena); // can be overidden for more subtle patterns
   virtual int move(int);
   bool collided(void);
-  // virtual void draw(char (& arena)[ARENA_SIZE]);
+  Missile *fireMissile(void);
 };
 
 #endif // ENEMY_HPP
